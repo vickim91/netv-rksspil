@@ -17,6 +17,9 @@ public class Server {
 		ServerSocket welcomeSocket = new ServerSocket(2000);
 		Socket connectionSocket = welcomeSocket.accept();
 		ThreadRead threadRead = new ThreadRead(connectionSocket);
+		ThreadWrite threadWrite = new ThreadWrite(connectionSocket);
+		threadRead.start();
+		threadWrite.start();
 		
 	}
 	
