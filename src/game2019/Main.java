@@ -64,7 +64,9 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+		
 		try {
+			
 			GridPane grid = new GridPane();
 			grid.setHgap(10);
 			grid.setVgap(10);
@@ -83,8 +85,11 @@ public class Main extends Application {
 			Button buttonConnect = new Button("connect");
 			
 			buttonHost.setOnAction(event -> {
+				
 				try {
+					
 					hostButton();
+					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -102,15 +107,21 @@ public class Main extends Application {
 			hero_down   = new Image(getClass().getResourceAsStream("Image/heroDown.png"),size,size,false,false);
 
 			fields = new Label[20][20];
+			
 			for (int j=0; j<20; j++) {
+				
 				for (int i=0; i<20; i++) {
+					
 					switch (board[j].charAt(i)) {
+					
 					case 'w':
 						fields[i][j] = new Label("", new ImageView(image_wall));
 						break;
+					
 					case ' ':					
 						fields[i][j] = new Label("", new ImageView(image_floor));
 						break;
+					
 					default: throw new Exception("Illegal field value: "+board[j].charAt(i) );
 					}
 					boardGrid.add(fields[i][j], i, j);
@@ -131,12 +142,15 @@ public class Main extends Application {
 			primaryStage.show();
 
 			scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+				
 				switch (event.getCode()) {
+				
 				case UP:    playerMoved(0,-1,"up");    break;
 				case DOWN:  playerMoved(0,+1,"down");  break;
 				case LEFT:  playerMoved(-1,0,"left");  break;
 				case RIGHT: playerMoved(+1,0,"right"); break;
 				default: break;
+				
 				}
 			});
 		
@@ -147,14 +161,12 @@ public class Main extends Application {
 			players.add(me);
 			fields[9][4].setGraphic(new ImageView(hero_up));
 			
-			
-			
-
 			Player harry = new Player("Harry",14,15,"up");
 			players.add(harry);
 			fields[14][15].setGraphic(new ImageView(hero_up));
 
 			scoreList.setText(getScoreList());
+		
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -166,13 +178,17 @@ public class Main extends Application {
 
 		if (board[y+delta_y].charAt(x+delta_x)=='w') {
 			me.addPoints(-1);
-		} 
-		else {
+			
+		} else {
+			
 			Player p = getPlayerAt(x+delta_x,y+delta_y);
+			
 			if (p!=null) {
               me.addPoints(10);
               p.addPoints(-10);
+			
 			} else {
+				
 				me.addPoints(1);
 			
 				fields[x][y].setGraphic(new ImageView(image_floor));
@@ -219,15 +235,19 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	public void hostButton() throws Exception
-	{
+	
+	public void hostButton() throws Exception {
+		
 		Server.StartServer();
 	}
+	
 	public void connectButton() throws UnknownHostException, IOException {
+		
 		try {
 			
 			Client.Connect();
 			Client.sendNameAndPos(me.name, me.xpos, me.ypos);
+		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
