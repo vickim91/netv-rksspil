@@ -258,7 +258,7 @@ public class Main extends Application {
 		Server.StartServer();
 	}
 	
-	public void connectButton() throws UnknownHostException, IOException {
+	public void connectButton(String ip) throws UnknownHostException, IOException {
 		
 		try {
 
