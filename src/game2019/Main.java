@@ -1,5 +1,9 @@
 package game2019;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,6 +84,15 @@ public class Main extends Application {
 			Button buttonHost = new Button("host");
 			Button buttonConnect = new Button("connect");
 			
+			buttonHost.setOnAction(event -> {
+				try {
+					hostButton();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} );
+			
 			GridPane boardGrid = new GridPane();
 
 			image_wall  = new Image(getClass().getResourceAsStream("Image/wall4.png"),size,size,false,false);
@@ -128,6 +141,7 @@ public class Main extends Application {
 				default: break;
 				}
 			});
+		
 			
             // Setting up standard players
 			
@@ -206,6 +220,20 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+	public void hostButton() throws Exception
+	{
+		Server.StartServer();
+	}
+	public void connectButton() throws UnknownHostException, IOException
+	{
+		try {
+			Client.Connect();
+			Client.sendNameAndPos(me.name, me.xpos, me.ypos);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

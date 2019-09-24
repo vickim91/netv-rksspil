@@ -8,7 +8,7 @@ public class Server {
 	
 	private static String[] ips;
 	
-	public static void main(String[] args) throws Exception
+	public static void StartServer() throws Exception
 	{
 		initIPs();
 		
