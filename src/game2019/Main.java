@@ -1,8 +1,6 @@
 package game2019;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -225,9 +223,9 @@ public class Main extends Application {
 	{
 		Server.StartServer();
 	}
-	public void connectButton() throws UnknownHostException, IOException
-	{
+	public void connectButton() throws UnknownHostException, IOException {
 		try {
+			
 			Client.Connect();
 			Client.sendNameAndPos(me.name, me.xpos, me.ypos);
 		} catch (Exception e) {
@@ -235,6 +233,4 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
 }
-
