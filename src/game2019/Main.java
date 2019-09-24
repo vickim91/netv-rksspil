@@ -82,23 +82,13 @@ public class Main extends Application {
 			scoreList = new TextArea();
 			
 			//connect og host knapper
-			Button buttonHost = new Button("host");
+		
 			Button buttonConnect = new Button("connect");
 			buttonConnect.minWidth(40);
 			//ip
 			TextField ipTxt = new TextField("Ip");
 			
-			buttonHost.setOnAction(event -> {
-				
-				try {
-					
-					hostButton();
-					
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} );
+		
 			buttonConnect.setOnAction(event -> {
 				try {
 					String ip = ipTxt.getText();
@@ -150,7 +140,7 @@ public class Main extends Application {
 			grid.add(scoreLabel, 1, 0); 
 			grid.add(boardGrid,  0, 1);
 			grid.add(scoreList,  1, 1);
-			grid.add(buttonHost, 0, 2);
+
 			grid.add(buttonConnect,1,2);
 			grid.add(ipTxt, 1, 3);
 						
@@ -253,10 +243,7 @@ public class Main extends Application {
 		launch(args);
 	}
 	
-	public void hostButton() throws Exception {
-		
-		Server.StartServer();
-	}
+
 	
 	public void connectButton(String ip) throws UnknownHostException, IOException {
 		
