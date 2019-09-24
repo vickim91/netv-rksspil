@@ -15,6 +15,7 @@ public class Client {
 	ThreadRead threadRead = new ThreadRead(clientSocket);
 	
 	threadRead.start();
+	System.out.println("client connected");
 	}
 	
 	//sender navn og position lige nu er det bare for start position, men kan evt udvides som en mere generelt implementation

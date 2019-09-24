@@ -8,7 +8,7 @@ public class Server {
 	private static String[] ips;
 	private static ServerSocket welcomeSocket;
 	private static Socket connectionSocket;
-	public static void Main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 		System.out.println("server running");
 		initIPs();
 		
