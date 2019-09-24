@@ -18,7 +18,7 @@ public class Client {
 	
 	}
 	//sender navn og position lige nu er det bare for start position, men kan evt udvides som en mere generelt implementation
-	public static void sendNameAndPos(String name, int x, int y) throws Exception
+	public static void sendNameAndPos(String name, int x, int y, String direction) throws Exception
 	{
 		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 		outToServer.writeBytes(name+" "+x+ " " +y+ "\n");

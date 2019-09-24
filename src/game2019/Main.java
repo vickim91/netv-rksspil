@@ -82,6 +82,7 @@ public class Main extends Application {
 			//connect og host knapper
 			Button buttonHost = new Button("host");
 			Button buttonConnect = new Button("connect");
+			buttonConnect.minWidth(40);
 			//ip
 			TextField ipTxt = new TextField("Ip");
 			
@@ -140,6 +141,7 @@ public class Main extends Application {
 			grid.add(scoreList,  1, 1);
 			grid.add(buttonHost, 0, 2);
 			grid.add(buttonConnect,1,2);
+			grid.add(ipTxt, 1, 3);
 						
 			Scene scene = new Scene(grid,scene_width,scene_height);
 			primaryStage.setScene(scene);
@@ -243,7 +245,7 @@ public class Main extends Application {
 		try {
 
 			Client.Connect(ip);
-			Client.sendNameAndPos(me.name, me.xpos, me.ypos);
+			Client.sendNameAndPos(me.name, me.xpos, me.ypos, me.direction);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
