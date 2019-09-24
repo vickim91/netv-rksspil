@@ -76,6 +76,10 @@ public class Main extends Application {
 
 			scoreList = new TextArea();
 			
+			//connect og host knapper
+			Button buttonHost = new Button("host");
+			Button buttonConnect = new Button("connect");
+			
 			GridPane boardGrid = new GridPane();
 
 			image_wall  = new Image(getClass().getResourceAsStream("Image/wall4.png"),size,size,false,false);
@@ -108,6 +112,8 @@ public class Main extends Application {
 			grid.add(scoreLabel, 1, 0); 
 			grid.add(boardGrid,  0, 1);
 			grid.add(scoreList,  1, 1);
+			grid.add(buttonHost, 0, 2);
+			grid.add(buttonConnect,1,2);
 						
 			Scene scene = new Scene(grid,scene_width,scene_height);
 			primaryStage.setScene(scene);
@@ -128,6 +134,9 @@ public class Main extends Application {
 			me = new Player("Orville",9,4,"up");
 			players.add(me);
 			fields[9][4].setGraphic(new ImageView(hero_up));
+			
+			
+			
 
 			Player harry = new Player("Harry",14,15,"up");
 			players.add(harry);
@@ -198,5 +207,6 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
 }
 

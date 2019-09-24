@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Server {
 	
-	private String[] ips;
+	private static String[] ips;
 	
 	public static void main(String[] args) throws Exception
 	{
@@ -23,6 +23,7 @@ public class Server {
 	public static void initIPs()
 	{
 		//initialize Ips array
+		ips = new String[] {"10.24.64.192", "10.24.2.36", "10.24.4.217"};
 	}
 
 }

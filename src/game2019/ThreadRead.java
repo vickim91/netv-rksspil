@@ -21,6 +21,7 @@ public class ThreadRead extends Thread{
 			BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			String message = inFromServer.readLine();
 			System.out.println("recieved: "+message);
+	
 			
 			
 		} catch (IOException e) {
