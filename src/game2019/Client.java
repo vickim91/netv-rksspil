@@ -10,7 +10,7 @@ public class Client {
 	
 	public static void Connect(String ip) throws Exception {
 	
-	Socket clientSocket = new Socket(ip, 2000);
+	clientSocket = new Socket(ip, 2000);
 	
 	ThreadRead threadRead = new ThreadRead(clientSocket);
 	
@@ -21,7 +21,8 @@ public class Client {
 	//sender navn og position lige nu er det bare for start position, men kan evt udvides som en mere generelt implementation
 	public static void sendNameAndPos(String name, int x, int y, String direction) throws Exception
 	{
+		System.out.println(clientSocket);
 		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-		outToServer.writeBytes(name+" "+x+ " " +y+ "\n");
+		outToServer.writeBytes(name+" "+x+ " " +y+ " " +direction + "\n");
 	}
 }

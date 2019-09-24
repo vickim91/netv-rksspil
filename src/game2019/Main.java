@@ -250,7 +250,8 @@ public class Main extends Application {
 		try {
 
 			Client.Connect(ip);
-		//	Client.sendNameAndPos(me.name, me.xpos, me.ypos, me.direction);
+			System.out.println(me.name+  me.xpos+  me.ypos + me.direction);
+			Client.sendNameAndPos(me.name, me.xpos, me.ypos, me.direction);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
