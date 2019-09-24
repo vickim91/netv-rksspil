@@ -12,7 +12,7 @@ public class Client {
 	
 	clientSocket = new Socket(ip, 2000);
 	
-	ThreadRead threadRead = new ThreadRead(clientSocket);
+	ServerRead threadRead = new ServerRead(clientSocket);
 	
 	threadRead.start();
 	System.out.println("client connected");

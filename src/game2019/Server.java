@@ -18,7 +18,7 @@ public class Server {
 
 		while (true) {
 		Socket connectionSocket = welcomeSocket.accept();
-		ThreadRead threadRead = new ThreadRead(connectionSocket);
+		ServerRead threadRead = new ServerRead(connectionSocket);
 		ThreadWrite threadWrite = new ThreadWrite(connectionSocket);
 		threadRead.start();
 		threadWrite.start();	
@@ -38,5 +38,9 @@ public class Server {
 	public void setConnectionSocket(Socket connectionSocket)
 	{
 		this.connectionSocket = connectionSocket;
+	}
+	public static String[] getIps()
+	{
+		return ips;
 	}
 }
