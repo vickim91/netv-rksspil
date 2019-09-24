@@ -6,11 +6,11 @@ import java.net.Socket;
 public class Client {
 	
 	private static Socket clientSocket;
-	private static String hostIp;
+
 	
-	public static void Connect() throws Exception
+	public static void Connect(String ip) throws Exception
 	{
-	Socket clientSocket = new Socket(hostIp, 6789);
+	Socket clientSocket = new Socket(ip, 6789);
 	
 	ThreadRead threadRead = new ThreadRead(clientSocket);
 	

@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
+
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -83,6 +84,8 @@ public class Main extends Application {
 			//connect og host knapper
 			Button buttonHost = new Button("host");
 			Button buttonConnect = new Button("connect");
+			//ip
+			TextField ipTxt = new TextField("Ip");
 			
 			buttonHost.setOnAction(event -> {
 				try {
@@ -92,6 +95,18 @@ public class Main extends Application {
 					e.printStackTrace();
 				}
 			} );
+			buttonConnect.setOnAction(event -> {
+				try {
+					String ip = ipTxt.getText();
+					connectButton(ip);
+				} catch (UnknownHostException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			});
 			
 			GridPane boardGrid = new GridPane();
 
@@ -225,10 +240,11 @@ public class Main extends Application {
 	{
 		Server.StartServer();
 	}
-	public void connectButton() throws UnknownHostException, IOException
+	public void connectButton(String ip) throws UnknownHostException, IOException
 	{
 		try {
-			Client.Connect();
+
+			Client.Connect(ip);
 			Client.sendNameAndPos(me.name, me.xpos, me.ypos);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
