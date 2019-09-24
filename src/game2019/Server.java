@@ -16,6 +16,7 @@ public class Server {
 		String capitalizedSentence;
 		ServerSocket welcomeSocket = new ServerSocket(2000);
 		Socket connectionSocket = welcomeSocket.accept();
+		ThreadRead threadRead = new ThreadRead(connectionSocket);
 		
 	}
 	
