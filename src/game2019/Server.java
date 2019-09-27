@@ -30,8 +30,6 @@ public class Server {
 		serverThread.start();
 	
 		}
-
-	
 	}
 	
 	public static void initIPs() {
@@ -39,17 +37,16 @@ public class Server {
 		//ips = new String[] {"10.24.64.192", "10.24.2.36", "10.24.4.217"};
 		ips = new String[] {"localhost"};
 	}
-	public ServerSocket getWelcomeSocket()
-	{
+	
+	public ServerSocket getWelcomeSocket() {
 		return welcomeSocket;
 	}
-	public void setConnectionSocket(Socket connectionSocket)
-	{
+	
+	public void setConnectionSocket(Socket connectionSocket) {
 		this.connectionSocket = connectionSocket;
 	}
 
-	public static ArrayList<ServerThread> getThreads()
-	{
+	public static ArrayList<ServerThread> getThreads() {
 		return threads;
 	}
 }
