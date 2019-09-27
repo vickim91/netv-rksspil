@@ -42,8 +42,8 @@ public class ServerThread extends Thread {
 		DataOutputStream outToClient;
 		try {
 			outToClient = new DataOutputStream(socket.getOutputStream());
-			outToClient.writeBytes(message);
-			System.out.println("pushed " +message);
+			outToClient.writeBytes(message +"\n");
+			System.out.println("pushed " +message );
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
