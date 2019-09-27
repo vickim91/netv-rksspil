@@ -19,8 +19,8 @@ import javafx.scene.text.*;
 public class Main extends Application {
 
 	public static final int size = 20;
-	public static final int scene_height = size * 20 + 100;
-	public static final int scene_width = size * 20 + 200;
+	public static final int scene_height = size * 22 + 100;
+	public static final int scene_width = size * 22 + 200;
 
 	public static Image image_floor;
 	public static Image image_wall;
@@ -265,26 +265,36 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	
 	public static void readMessagefromClient (String message) {
 		String[] arr = message.split(" ");
 		ArrayList<String> playerNames = new ArrayList();
-		for(Player p : players) // lav en compareto istedet
-		{
+		
+		for(Player p : players) { // lav en compareTo istedet
 			playerNames.add(p.name);
 		}
-		if(!playerNames.contains(arr[0]))
-		{
+		
+		if(!playerNames.contains(arr[0])) {
+			
 			Player p  = new Player(arr[0],Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
 			players.add(p);
-			if(arr[3].equals("up"))
-			fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_up));
-			else if(arr[3].equals("down"))
+			
+			if(arr[3].equals("up")) {
+			
+				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_up));
+			
+			} else if(arr[3].equals("down")) {
+				
 				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_down));
-			else if(arr[3].equals("right"))
+			
+			} else if(arr[3].equals("right")) {
+				
 				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_right));
-			else if(arr[3].equals("left"))
+			
+			} else if(arr[3].equals("left")) {
+				
 				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_left));
+			}
 		}
-		
 	}
 }
