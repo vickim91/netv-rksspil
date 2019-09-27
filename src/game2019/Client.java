@@ -12,10 +12,7 @@ public class Client {
 	public static void Connect(String ip) throws Exception {
 	
 	clientSocket = new Socket(ip, 2000);
-	ServerSocket serverSocket = new ServerSocket(2001);
-	
 
-	
 	ClientThread clientThread = new ClientThread(clientSocket);
 	
 	clientThread.start();

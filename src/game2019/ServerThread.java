@@ -21,7 +21,6 @@ public class ServerThread extends Thread {
 			try {
 				
 			BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-	
 			String message = inFromServer.readLine();
 			System.out.println("recieved: "+message);
 			

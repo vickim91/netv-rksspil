@@ -26,7 +26,7 @@ public class ClientThread extends Thread {
 				
 		
 			BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			
+			System.out.println("client thread waiting for message");
 			String message = inFromServer.readLine();
 			System.out.println("client Thread: " +message);
 		
