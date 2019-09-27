@@ -29,7 +29,7 @@ public class Main extends Application {
 	public static Player me;
 	public static List<Player> players = new ArrayList<Player>();
 
-	private Label[][] fields;
+	private static Label[][] fields;
 	private TextArea scoreList;
 
 	private String[] board = { // 20x20
@@ -264,5 +264,27 @@ public class Main extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	public static void readMessagefromClient (String message) {
+		String[] arr = message.split(" ");
+		ArrayList<String> playerNames = new ArrayList();
+		for(Player p : players) // lav en compareto istedet
+		{
+			playerNames.add(p.name);
+		}
+		if(!playerNames.contains(arr[0]))
+		{
+			Player p  = new Player(arr[0],Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
+			players.add(p);
+			if(arr[3].equals("up"))
+			fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_up));
+			else if(arr[3].equals("down"))
+				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_down));
+			else if(arr[3].equals("right"))
+				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_right));
+			else if(arr[3].equals("left"))
+				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_left));
+		}
+		
 	}
 }
