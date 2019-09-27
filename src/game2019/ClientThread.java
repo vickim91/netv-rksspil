@@ -22,11 +22,11 @@ public class ClientThread extends Thread {
 		while(true) {
 		
 			try {
-				System.out.println("client loop");
+
 				
 		
 			BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			System.out.println("client thread waiting for message");
+			
 			String message = inFromServer.readLine();
 			System.out.println("client Thread: " +message);
 		

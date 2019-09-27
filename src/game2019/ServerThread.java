@@ -27,7 +27,8 @@ public class ServerThread extends Thread {
 
 			for(ServerThread s : Server.getThreads())
 			{
-				pushMessage(message);
+				System.out.println(s.toString());
+				s.pushMessage(message);
 			}
 			
 			
