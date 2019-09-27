@@ -1,6 +1,7 @@
 package game2019;
 
 public class Player {
+	
 	String name;
 	int xpos;
 	int ypos;
@@ -40,10 +41,10 @@ public class Player {
 	}
 	
 	public void addPoints(int p) {
-		point+=p;
+		point += p;
 	}
 	
 	public String toString() {
-		return name+":   "+point;
+		return name + ":   " + point;
 	}
 }
