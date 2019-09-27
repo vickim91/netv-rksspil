@@ -2,10 +2,12 @@ package game2019;
 
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Server {
 	
 	private static String[] ips;
+	private static ArrayList<ServerThread> threads = new ArrayList();
 	private static ServerSocket welcomeSocket;
 	private static Socket connectionSocket;
 	public static void main(String[] args) throws Exception {
@@ -18,10 +20,15 @@ public class Server {
 
 		while (true) {
 		Socket connectionSocket = welcomeSocket.accept();
-		ServerRead threadRead = new ServerRead(connectionSocket);
-		ThreadWrite threadWrite = new ThreadWrite(connectionSocket);
-		threadRead.start();
-		threadWrite.start();	
+
+
+		ServerThread serverThread = new ServerThread(connectionSocket);
+		
+		if(!threads.contains(serverThread))
+			threads.add(serverThread);
+		
+		serverThread.start();
+	
 		}
 
 	
@@ -29,7 +36,8 @@ public class Server {
 	
 	public static void initIPs() {
 		//initialize Ips array
-		ips = new String[] {"10.24.64.192", "10.24.2.36", "10.24.4.217"};
+		//ips = new String[] {"10.24.64.192", "10.24.2.36", "10.24.4.217"};
+		ips = new String[] {"localhost"};
 	}
 	public ServerSocket getWelcomeSocket()
 	{
@@ -39,8 +47,9 @@ public class Server {
 	{
 		this.connectionSocket = connectionSocket;
 	}
-	public static String[] getIps()
+
+	public static ArrayList<ServerThread> getThreads()
 	{
-		return ips;
+		return threads;
 	}
 }

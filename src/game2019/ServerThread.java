@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-public class ServerRead extends Thread {
+public class ServerThread extends Thread {
 	
 	private Socket socket;
 	
-	public ServerRead(Socket socket) {
+	public ServerThread(Socket socket) {
 		this.socket = socket;
 	}
 	
@@ -21,17 +21,14 @@ public class ServerRead extends Thread {
 			try {
 				
 			BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
+	
 			String message = inFromServer.readLine();
 			System.out.println("recieved: "+message);
 			
-			for(String s : Server.getIps() )
+
+			for(ServerThread s : Server.getThreads())
 			{
-				Socket tmp = new Socket(s, 2000);
-				DataOutputStream out = new DataOutputStream(tmp.getOutputStream());
-				
-				tmp.close();
-				
+				pushMessage(message);
 			}
 			
 			
@@ -40,5 +37,18 @@ public class ServerRead extends Thread {
 				e.printStackTrace();
 			}
 		}
+	}
+	public void pushMessage(String message)
+	{
+		DataOutputStream outToClient;
+		try {
+			outToClient = new DataOutputStream(socket.getOutputStream());
+			outToClient.writeBytes(message);
+			System.out.println("pushed " +message);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 	}
 }
