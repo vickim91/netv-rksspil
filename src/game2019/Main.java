@@ -279,6 +279,7 @@ public class Main extends Application {
 			
 			Player p  = new Player(arr[0],Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
 			players.add(p);
+	}
 			
 			if(arr[3].equals("up")) {
 			
@@ -296,6 +297,6 @@ public class Main extends Application {
 				
 				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_left));
 			}
-		}
+		
 	}
 }
