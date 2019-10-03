@@ -5,6 +5,8 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.oracle.tools.packager.Platform;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
@@ -267,36 +269,46 @@ public class Main extends Application {
 	}
 	
 	public static void readMessagefromClient (String message) {
-		String[] arr = message.split(" ");
-		ArrayList<String> playerNames = new ArrayList();
-		System.out.println("message from client "+ message);
 		
-		for(Player p : players) { // lav en compareTo istedet
-			playerNames.add(p.name);
-		}
 		
-		if(!playerNames.contains(arr[0])) {
-			
-			Player p  = new Player(arr[0],Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
-			players.add(p);
-	}
-			
-			if(arr[3].equals("up")) {
-			
-				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_up));
-			
-			} else if(arr[3].equals("down")) {
-			System.out.println(hero_down.toString());
-				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_down));
-			
-			} else if(arr[3].equals("right")) {
+		javafx.application.Platform.runLater(new Runnable(){
+			@Override
+			public void run()
+			{
+				String[] arr = message.split(" ");
+				ArrayList<String> playerNames = new ArrayList();
+				System.out.println("message from client "+ message);
+				for(Player p : players) { // lav en compareTo istedet
+					playerNames.add(p.name);
+				}
 				
-				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_right));
-			
-			} else if(arr[3].equals("left")) {
-				
-				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_left));
+				if(!playerNames.contains(arr[0])) {
+					
+					Player p  = new Player(arr[0],Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
+					players.add(p);
 			}
+					
+					if(arr[3].equals("up")) {
+					
+						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_up));
+					
+					} else if(arr[3].equals("down")) {
+					System.out.println(hero_down.toString());
+						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_down));
+					
+					} else if(arr[3].equals("right")) {
+						
+						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_right));
+					
+					} else if(arr[3].equals("left")) {
+						
+						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_left));
+					}
+			}
+
+
 		
+		
+	});
 	}
 }
