@@ -34,7 +34,7 @@ public class Main extends Application {
 	private static Label[][] fields;
 	private static TextArea scoreList;
 
-	private String[] board = { // 20x20
+	private static String[] board = { // 20x20
 			"wwwwwwwwwwwwwwwwwwww", 
 			"w        ww        w", 
 			"w w  w  www w  w  ww", 
@@ -154,16 +154,40 @@ public class Main extends Application {
 				switch (event.getCode()) {
 
 				case UP:
-					playerMoved(0, -1, "up");
+					//playerMoved(0, -1, "up");
+					try {
+						Client.sendNameAndPos(me.name, me.xpos, me.ypos-1, "up");
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					break;
 				case DOWN:
-					playerMoved(0, +1, "down");
+					//playerMoved(0, +1, "down");
+					try {
+						Client.sendNameAndPos(me.name, me.xpos, me.ypos+1, "down");
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					break;
 				case LEFT:
-					playerMoved(-1, 0, "left");
+					//playerMoved(-1, 0, "left");
+					try {
+						Client.sendNameAndPos(me.name, me.xpos-1, me.ypos, "left");
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					break;
 				case RIGHT:
-					playerMoved(+1, 0, "right");
+					//playerMoved(+1, 0, "right");
+					try {
+						Client.sendNameAndPos(me.name, me.xpos+1, me.ypos, "right");
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					break;
 				default:
 					break;
@@ -173,9 +197,9 @@ public class Main extends Application {
 
 			// Setting up standard players
 
-			me = new Player("Victor", 8, 4, "down");
-			players.add(me);
-			fields[9][4].setGraphic(new ImageView(hero_up));
+//			me = new Player("Victor", 8, 4, "down");
+//			players.add(me);
+//			fields[9][4].setGraphic(new ImageView(hero_up));
 
 			scoreList.setText(getScoreList());
 
@@ -236,9 +260,9 @@ public class Main extends Application {
 		player.direction = direction;
 		int x = player.getXpos(), y = player.getYpos();
 
-//		if (board[y + delta_y].charAt(x + delta_x) == 'w') {
-//			player.addPoints(-1);
-//		} else {
+		if (board[newY].charAt(newX) == 'w') {
+			player.addPoints(-1);
+		} else {
 		
 			Player p = getPlayerAt(newX, y + newY);
 
@@ -270,7 +294,7 @@ public class Main extends Application {
 				
 				player.setXpos(x);
 				player.setYpos(y);
-			//}
+			}
 		}
 		scoreList.setText(getScoreList());
 		try {
@@ -309,6 +333,8 @@ public class Main extends Application {
 		try {
 			Client.Connect(ip);
 			// System.out.println(me.name+ me.xpos+ me.ypos + me.direction);
+			me = new Player("Victor", 8, 4, "down");
+			players.add(me);
 			Client.sendNameAndPos(me.name, me.xpos, me.ypos, me.direction);
 			
 		} catch (Exception e) {
