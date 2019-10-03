@@ -25,7 +25,9 @@ public class ClientThread extends Thread {
 			
 			String message = inFromServer.readLine();
 			System.out.println("client Thread: " +message);
+			if(message != null){
 			Main.readMessagefromClient(message);
+			}
 		
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

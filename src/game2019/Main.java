@@ -171,7 +171,7 @@ public class Main extends Application {
 
 			// Setting up standard players
 
-			me = new Player("Thor", 9, 4, "up");
+			me = new Player("Per", 10, 4, "down");
 			players.add(me);
 			fields[9][4].setGraphic(new ImageView(hero_up));
 
@@ -269,6 +269,7 @@ public class Main extends Application {
 	public static void readMessagefromClient (String message) {
 		String[] arr = message.split(" ");
 		ArrayList<String> playerNames = new ArrayList();
+		System.out.println("message from client "+ message);
 		
 		for(Player p : players) { // lav en compareTo istedet
 			playerNames.add(p.name);
@@ -284,7 +285,7 @@ public class Main extends Application {
 				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_up));
 			
 			} else if(arr[3].equals("down")) {
-				
+			System.out.println(hero_down.toString());
 				fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_down));
 			
 			} else if(arr[3].equals("right")) {
