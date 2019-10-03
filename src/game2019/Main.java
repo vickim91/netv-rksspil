@@ -256,6 +256,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	
 	public static void playerMoved(Player player, int newX, int newY, String direction) {
 		player.direction = direction;
 		int x = player.getXpos(), y = player.getYpos();
@@ -264,7 +265,9 @@ public class Main extends Application {
 			player.addPoints(-1);
 		} else {
 		
-			Player p = getPlayerAt(newX, y + newY);
+			Player p = getPlayerAt(newX, newY);
+	
+		
 
 			if (p != null) {
 				player.addPoints(10);
@@ -332,7 +335,7 @@ public class Main extends Application {
 
 		try {
 			Client.Connect(ip);
-			// System.out.println(me.name+ me.xpos+ me.ypos + me.direction);
+
 			me = new Player("Victor", 8, 4, "down");
 			players.add(me);
 			Client.sendNameAndPos(me.name, me.xpos, me.ypos, me.direction);
@@ -373,22 +376,7 @@ public class Main extends Application {
 				playerMoved(player, Integer.parseInt(arr[1]),Integer.parseInt( arr[2]), arr[3]);
 				
 					
-//					if(arr[3].equals("up")) {
-//						
-//						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_up));
-//					
-//					} else if(arr[3].equals("down")) {
-//					
-//						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_down));
-//					
-//					} else if(arr[3].equals("right")) {
-//						
-//						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_right));
-//					
-//					} else if(arr[3].equals("left")) {
-//						
-//						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_left));
-//					}
+
 			}
 
 
