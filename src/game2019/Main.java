@@ -391,7 +391,7 @@ public class Main extends Application {
 			Client.Connect(ip);
 
 			me = new Player("Victor", 9, 4, "down");
-			//players.add(me);
+			players.add(me);
 			
 	
 			Client.sendNameAndPos(me.name, me.xpos, me.ypos, me.direction);
@@ -425,7 +425,7 @@ public class Main extends Application {
 					spawnPlayer(player, Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
 				}
 				else {
-					System.out.println("wtf");
+				
 				for(Player p : players)
 				{
 					if(p.name.equals(arr[0]))
