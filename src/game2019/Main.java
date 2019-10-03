@@ -5,7 +5,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.oracle.tools.packager.Platform;
+
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -32,7 +32,7 @@ public class Main extends Application {
 	public static List<Player> players = new ArrayList<Player>();
 
 	private static Label[][] fields;
-	private TextArea scoreList;
+	private static TextArea scoreList;
 
 	private String[] board = { // 20x20
 			"wwwwwwwwwwwwwwwwwwww", 
@@ -173,7 +173,7 @@ public class Main extends Application {
 
 			// Setting up standard players
 
-			me = new Player("Peter", 10, 4, "down");
+			me = new Player("Victor", 8, 4, "down");
 			players.add(me);
 			fields[9][4].setGraphic(new ImageView(hero_up));
 
@@ -232,8 +232,57 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	public static void playerMoved(Player player, int newX, int newY, String direction) {
+		player.direction = direction;
+		int x = player.getXpos(), y = player.getYpos();
 
-	public String getScoreList() {
+//		if (board[y + delta_y].charAt(x + delta_x) == 'w') {
+//			player.addPoints(-1);
+//		} else {
+		
+			Player p = getPlayerAt(newX, y + newY);
+
+			if (p != null) {
+				player.addPoints(10);
+				p.addPoints(-10);
+			} else {
+				player.addPoints(1);
+
+				fields[x][y].setGraphic(new ImageView(image_floor));
+				x =newX;
+				y =newY;
+
+				if (direction.equals("right")) {
+					fields[x][y].setGraphic(new ImageView(hero_right));
+				};
+				
+				if (direction.equals("left")) {
+					fields[x][y].setGraphic(new ImageView(hero_left));
+				};
+				
+				if (direction.equals("up")) {
+					fields[x][y].setGraphic(new ImageView(hero_up));
+				};
+				
+				if (direction.equals("down")) {
+					fields[x][y].setGraphic(new ImageView(hero_down));
+				};
+				
+				player.setXpos(x);
+				player.setYpos(y);
+			//}
+		}
+		scoreList.setText(getScoreList());
+		try {
+		//	Client.sendNameAndPos(player.name, player.xpos, player.ypos, player.direction);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static String getScoreList() {
 		StringBuffer b = new StringBuffer(100);
 		
 		for (Player p : players) {
@@ -242,7 +291,7 @@ public class Main extends Application {
 		return b.toString();
 	}
 
-	public Player getPlayerAt(int x, int y) {
+	public static Player getPlayerAt(int x, int y) {
 		for (Player p : players) {
 			if (p.getXpos() == x && p.getYpos() == y) {
 				return p;
@@ -281,40 +330,39 @@ public class Main extends Application {
 				for(Player p : players) { // lav en compareTo istedet
 					playerNames.add(p.name);
 				}
+				Player player  = new Player(arr[0],Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
 				
 				if(!playerNames.contains(arr[0])) {
 					
-					Player p  = new Player(arr[0],Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
-					players.add(p);
-			}
-				else
-				{
-					Player temp;
-					for(Player p : players)
-					{
-						if(p.name.equals(arr[0]))
-						{
-							fields[p.xpos][p.ypos].setGraphic(new ImageView(image_floor));
-						}
-					}
+					
+					players.add(player);
 				}
-					
-					if(arr[3].equals("up")) {
+			
+				for(Player p : players)
+				{
+					if(p.name.equals(arr[0]))
+						player = p;
 						
-						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_up));
+				}
+				playerMoved(player, Integer.parseInt(arr[1]),Integer.parseInt( arr[2]), arr[3]);
+				
 					
-					} else if(arr[3].equals("down")) {
-					
-						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_down));
-					
-					} else if(arr[3].equals("right")) {
-						
-						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_right));
-					
-					} else if(arr[3].equals("left")) {
-						
-						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_left));
-					}
+//					if(arr[3].equals("up")) {
+//						
+//						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_up));
+//					
+//					} else if(arr[3].equals("down")) {
+//					
+//						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_down));
+//					
+//					} else if(arr[3].equals("right")) {
+//						
+//						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_right));
+//					
+//					} else if(arr[3].equals("left")) {
+//						
+//						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_left));
+//					}
 			}
 
 
