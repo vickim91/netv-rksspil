@@ -173,7 +173,7 @@ public class Main extends Application {
 
 			// Setting up standard players
 
-			me = new Player("Per", 10, 4, "down");
+			me = new Player("Peter", 10, 4, "down");
 			players.add(me);
 			fields[9][4].setGraphic(new ImageView(hero_up));
 
@@ -287,13 +287,24 @@ public class Main extends Application {
 					Player p  = new Player(arr[0],Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
 					players.add(p);
 			}
+				else
+				{
+					Player temp;
+					for(Player p : players)
+					{
+						if(p.name.equals(arr[0]))
+						{
+							fields[p.xpos][p.ypos].setGraphic(new ImageView(image_floor));
+						}
+					}
+				}
 					
 					if(arr[3].equals("up")) {
-					
+						
 						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_up));
 					
 					} else if(arr[3].equals("down")) {
-					System.out.println(hero_down.toString());
+					
 						fields[Integer.parseInt(arr[1])][Integer.parseInt(arr[2])].setGraphic(new ImageView(hero_down));
 					
 					} else if(arr[3].equals("right")) {
