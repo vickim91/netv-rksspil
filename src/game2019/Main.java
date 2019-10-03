@@ -269,7 +269,7 @@ public class Main extends Application {
 	
 		
 
-			if (p != null) {
+			if (p != null && p != player) {
 				player.addPoints(10);
 				p.addPoints(-10);
 			} else {
@@ -299,6 +299,60 @@ public class Main extends Application {
 				player.setYpos(y);
 			}
 		}
+		
+		
+		scoreList.setText(getScoreList());
+		try {
+		//	Client.sendNameAndPos(player.name, player.xpos, player.ypos, player.direction);
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void spawnPlayer(Player player, int newX, int newY, String direction) {
+		player.direction = direction;
+		int x = player.getXpos(), y = player.getYpos();
+
+		if (board[newY].charAt(newX) == 'w') {
+		
+		} else {
+		
+			Player p = getPlayerAt(newX, newY);
+	
+		
+
+			if (p != null && p != player) {
+//			
+			} else {
+			
+
+				fields[x][y].setGraphic(new ImageView(image_floor));
+				x =newX;
+				y =newY;
+
+				if (direction.equals("right")) {
+					fields[x][y].setGraphic(new ImageView(hero_right));
+				};
+				
+				if (direction.equals("left")) {
+					fields[x][y].setGraphic(new ImageView(hero_left));
+				};
+				
+				if (direction.equals("up")) {
+					fields[x][y].setGraphic(new ImageView(hero_up));
+				};
+				
+				if (direction.equals("down")) {
+					fields[x][y].setGraphic(new ImageView(hero_down));
+				};
+				
+				player.setXpos(x);
+				player.setYpos(y);
+			}
+		}
+		
+		
 		scoreList.setText(getScoreList());
 		try {
 		//	Client.sendNameAndPos(player.name, player.xpos, player.ypos, player.direction);
@@ -336,9 +390,12 @@ public class Main extends Application {
 		try {
 			Client.Connect(ip);
 
-			me = new Player("Victor", 8, 4, "down");
-			players.add(me);
+			me = new Player("Victor", 9, 4, "down");
+			//players.add(me);
+			
+	
 			Client.sendNameAndPos(me.name, me.xpos, me.ypos, me.direction);
+			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -365,17 +422,20 @@ public class Main extends Application {
 					
 					
 					players.add(player);
+					spawnPlayer(player, Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
 				}
-			
+				else {
+					System.out.println("wtf");
 				for(Player p : players)
 				{
 					if(p.name.equals(arr[0]))
 						player = p;
 						
 				}
+		
 				playerMoved(player, Integer.parseInt(arr[1]),Integer.parseInt( arr[2]), arr[3]);
 				
-					
+				}
 
 			}
 
