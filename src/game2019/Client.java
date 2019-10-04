@@ -27,8 +27,8 @@ public class Client {
 		outToServer.flush();
 	}
 	//en metode til at sende ændring i point
-	public static void sendPoints(String name, int points) throws IOException
-	{
+	public static void sendPoints(String name, int points) throws IOException {
+		
 		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 		outToServer.writeBytes(name + " " + points +"\n");
 		outToServer.flush();
