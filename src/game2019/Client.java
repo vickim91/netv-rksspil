@@ -30,7 +30,7 @@ public class Client {
 	public static void sendPoints(String name, int points) throws IOException
 	{
 		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-		outToServer.writeBytes(name + " " + points);
+		outToServer.writeBytes(name + " " + points +"\n");
 		outToServer.flush();
 	}
 }
