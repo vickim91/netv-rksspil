@@ -248,9 +248,12 @@ public class Main extends Application {
 //				x += delta_x;
 //				y += delta_y;
 
-			
-					
-			
+					try {
+						Client.sendNameAndPos(me.name, me.xpos +delta_x, me.ypos +delta_y, direction);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			}
 		}
 		scoreList.setText(getScoreList());
@@ -303,7 +306,6 @@ public class Main extends Application {
 			}
 		}
 		
-		
 		scoreList.setText(getScoreList());
 		try {
 		//	Client.sendNameAndPos(player.name, player.xpos, player.ypos, player.direction);
@@ -313,6 +315,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	
 	public static void spawnPlayer(Player player, int newX, int newY, String direction) {
 		player.direction = direction;
 		int x = player.getXpos(), y = player.getYpos();
@@ -323,13 +326,10 @@ public class Main extends Application {
 		
 			Player p = getPlayerAt(newX, newY);
 	
-		
-
 			if (p != null && p != player) {
-//			
+		
 			} else {
 			
-
 				fields[x][y].setGraphic(new ImageView(image_floor));
 				x =newX;
 				y =newY;
@@ -354,7 +354,6 @@ public class Main extends Application {
 				player.setYpos(y);
 			}
 		}
-		
 		
 		scoreList.setText(getScoreList());
 		try {
@@ -439,9 +438,9 @@ public class Main extends Application {
 						}
 					}
 					playerMoved(player, Integer.parseInt(arr[1]),Integer.parseInt( arr[2]), arr[3]);
+
 					player.addPoints(1);
-				
-				
+
 					}
 				}
 				else if (arr.length == 2)
