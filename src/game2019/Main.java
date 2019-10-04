@@ -213,7 +213,7 @@ public class Main extends Application {
 		if (board[y + delta_y].charAt(x + delta_x) == 'w') {
 
 			try {
-				Client.sendPoints(me.name, -1);
+				Client.sendPoints(me.name, me.point-1);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -224,8 +224,8 @@ public class Main extends Application {
 			if (p != null ) {
 			
 				try {
-					Client.sendPoints(me.name, 10);
-					Client.sendPoints(p.name, -10);
+					Client.sendPoints(me.name, me.point +10);
+					Client.sendPoints(p.name, p.point-10);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -441,6 +441,7 @@ public class Main extends Application {
 					playerMoved(player, Integer.parseInt(arr[1]),Integer.parseInt( arr[2]), arr[3]);
 					player.addPoints(1);
 				
+				
 					}
 				}
 				else if (arr.length == 2)
@@ -449,7 +450,7 @@ public class Main extends Application {
 					{
 						if (p.name.equals(arr[0]))
 						{
-							p.addPoints(Integer.parseInt(arr[1]));
+							p.point =(Integer.parseInt(arr[1]));
 						}
 					}
 				}
