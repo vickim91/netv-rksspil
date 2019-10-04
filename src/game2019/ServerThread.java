@@ -34,7 +34,7 @@ public class ServerThread extends Thread {
 		}
 	}
 
-	public void pushMessage(String message) {
+	public synchronized void pushMessage(String message) {
 
 		DataOutputStream outToClient;
 
