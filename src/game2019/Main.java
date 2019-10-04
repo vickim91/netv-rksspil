@@ -235,7 +235,7 @@ public class Main extends Application {
 				try {
 			
 					Client.sendNameAndPos(me.name, me.xpos +delta_x, me.ypos +delta_y, direction);
-					Client.sendPoints(me.name, 1);
+					//Client.sendPoints(me.name, 1);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -439,6 +439,7 @@ public class Main extends Application {
 						}
 					}
 					playerMoved(player, Integer.parseInt(arr[1]),Integer.parseInt( arr[2]), arr[3]);
+					player.addPoints(1);
 				
 					}
 				}

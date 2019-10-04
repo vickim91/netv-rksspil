@@ -14,7 +14,7 @@ public class ServerThread extends Thread {
 		this.socket = socket;
 	}
 
-	public void run() {
+	public synchronized void run() {
 
 		while (true) {
 
@@ -34,7 +34,7 @@ public class ServerThread extends Thread {
 		}
 	}
 
-	public synchronized void pushMessage(String message) {
+	public void pushMessage(String message) {
 
 		DataOutputStream outToClient;
 
