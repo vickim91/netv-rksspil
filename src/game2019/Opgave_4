@@ -1,0 +1,14 @@
+Opgave 4 - Beskrivelser af vores synkroniserings- og samtidighedsproblemer.
+
+Der er ikke samtidighedsproblemer med spillepladerne.
+
+Der er problemer med resultatlisterne, som ikke er synkroniserede. Hver spiller har en resultatliste med alle spillere, som alle får/mister point når man går rundt. Ved kollision med andre spillere, får hver spiller selv point, mens modspiller mister point. Når person A går ind i person B, får A point på A's resultatliste, mens B mister point. Dette er så omvendt hos B's resultatliste, således at B er den, som får point, mens A mister point.
+
+Derudover er der et problem med pludseligt nyopståede spillere, grundet nogle defekte messages. Dettte producerer også NumberFormatExceptions, da der somme tider ryger bogstaver ind i positions variablerne. Oftest er disse nye spillere usynlige på spillepladerne og deres navn er ofte en blanding af to af de eksisterende spilleres navne.
+Et par eksempler på en defekt besked, som fremkalder en NumberFormatException: 
+1: "ThLoorui s1e  81  dow7 ndown".
+2: "Thor 1LL8o duoiwsne"
+
+Somme tider kan en defekt besked også fremkalde en tilsyneladende teleportation, hvor spillers navn og position er korrekt, men hvor direction feltet er defekt, således at programmet ikke genkender navnet og derfor bliver spilleren flyttet, men bliver usynlig, indtil næste korrekte besked, hvor så spilleren bliver synlig igen.
+Et eksempel på en defekt besked som fremkalder usynlighed:
+"Louise 1 7 Tdhoor 1 w8n do".
