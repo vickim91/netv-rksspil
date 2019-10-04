@@ -25,7 +25,10 @@ public class Server {
 		ServerThread serverThread = new ServerThread(connectionSocket);
 		
 		if(!threads.contains(serverThread))
+		{
 			threads.add(serverThread);
+			System.out.println("NUMBER OF THREADS " + threads.size());
+		}
 		
 		serverThread.start();
 	

@@ -232,17 +232,7 @@ public class Main extends Application {
 				}
 			} else {
 				
-				try {
 			
-					Client.sendNameAndPos(me.name, me.xpos +delta_x, me.ypos +delta_y, direction);
-					//Client.sendPoints(me.name, 1);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 
 //				fields[x][y].setGraphic(new ImageView(image_floor));
 //				x += delta_x;
@@ -405,7 +395,7 @@ public class Main extends Application {
 		}
 	}
 	
-	public synchronized static void readMessagefromClient (String message) {
+	public static synchronized void readMessagefromClient (String message) {
 		
 		javafx.application.Platform.runLater(new Runnable(){
 			@Override
@@ -439,7 +429,13 @@ public class Main extends Application {
 					}
 					playerMoved(player, Integer.parseInt(arr[1]),Integer.parseInt( arr[2]), arr[3]);
 
-					player.addPoints(1);
+					//player.addPoints(1);
+					try {
+						Client.sendPoints(player.name, player.point +1);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
 					}
 				}
