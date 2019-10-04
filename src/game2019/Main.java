@@ -5,12 +5,9 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
-
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -425,41 +422,39 @@ public class Main extends Application {
 	
 	public synchronized static void readMessagefromClient (String message) {
 		
-		
 		javafx.application.Platform.runLater(new Runnable(){
 			@Override
-			public void run()
-			{
+			public void run() {
+				
 				String[] arr = message.split(" ");
 				
 				System.out.println("message from client "+ message);
+				
 //				for(Player p : players) { // lav en compareTo istedet
 //					playerNames.add(p.name);
 //				}
+				
 				if(arr.length ==4)
 				{
 				Player player  = new Player(arr[0],Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
-				
-				
+								
 				if(!players.contains(player)) {
-					
-					
+										
 					players.add(player);
 					spawnPlayer(player, Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
 					
 				}
 				else {
 				
-				for(Player p : players)
-				{
-					if(p.equals(player))
-						player = p;
+					for(Player p : players) {
 						
-				}
-		
-				playerMoved(player, Integer.parseInt(arr[1]),Integer.parseInt( arr[2]), arr[3]);
+						if(p.equals(player)) {
+							player = p;
+						}
+					}
+					playerMoved(player, Integer.parseInt(arr[1]),Integer.parseInt( arr[2]), arr[3]);
 				
-				}
+					}
 				}
 				else if (arr.length == 2)
 				{
@@ -472,11 +467,7 @@ public class Main extends Application {
 					}
 				}
 
-			}
-
-
-		
-		
+			}		
 	});
 	}
 }
