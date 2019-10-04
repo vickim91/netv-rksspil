@@ -248,18 +248,12 @@ public class Main extends Application {
 //				x += delta_x;
 //				y += delta_y;
 
-<<<<<<< HEAD
 					try {
 						Client.sendNameAndPos(me.name, me.xpos +delta_x, me.ypos +delta_y, direction);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-=======
-			
-					
-			
->>>>>>> master
 			}
 		}
 		scoreList.setText(getScoreList());
@@ -444,12 +438,9 @@ public class Main extends Application {
 						}
 					}
 					playerMoved(player, Integer.parseInt(arr[1]),Integer.parseInt( arr[2]), arr[3]);
-<<<<<<< HEAD
-					
-=======
+
 					player.addPoints(1);
-				
->>>>>>> master
+
 					}
 				}
 				else if (arr.length == 2) {
