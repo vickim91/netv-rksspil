@@ -47,4 +47,14 @@ public class Player {
 	public String toString() {
 		return name + ":   " + point;
 	}
+	@Override
+	public boolean equals(Object o)
+	{
+		Player p = (Player)o;
+		if(p.name.equals(this.name))
+			return true;
+		else
+			return false;
+		
+	}
 }
