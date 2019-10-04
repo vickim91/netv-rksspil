@@ -41,6 +41,7 @@ public class ServerThread extends Thread {
 		try {
 			outToClient = new DataOutputStream(socket.getOutputStream());
 			outToClient.writeBytes(message + "\n");
+			outToClient.flush();
 			System.out.println("pushed " + message);
 
 		} catch (IOException e1) {

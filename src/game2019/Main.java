@@ -33,6 +33,7 @@ public class Main extends Application {
 
 	private static Label[][] fields;
 	private static TextArea scoreList;
+	private static ArrayList<String> playerNames = new ArrayList();
 
 	private static String[] board = { // 20x20
 			"wwwwwwwwwwwwwwwwwwww", 
@@ -403,7 +404,7 @@ public class Main extends Application {
 		}
 	}
 	
-	public static void readMessagefromClient (String message) {
+	public synchronized static void readMessagefromClient (String message) {
 		
 		
 		javafx.application.Platform.runLater(new Runnable(){
@@ -411,7 +412,7 @@ public class Main extends Application {
 			public void run()
 			{
 				String[] arr = message.split(" ");
-				ArrayList<String> playerNames = new ArrayList();
+				
 				System.out.println("message from client "+ message);
 				for(Player p : players) { // lav en compareTo istedet
 					playerNames.add(p.name);

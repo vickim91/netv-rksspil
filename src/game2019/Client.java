@@ -1,6 +1,7 @@
 package game2019;
 
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 
 public class Client {
@@ -23,5 +24,13 @@ public class Client {
 		// System.out.println(clientSocket);
 		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 		outToServer.writeBytes(name + " " + x + " " + y + " " + direction + "\n");
+		outToServer.flush();
+	}
+	//en metode til at sende ændring i point
+	public static void sendPoints(String name, int points) throws IOException
+	{
+		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+		outToServer.writeBytes(name + " " + points);
+		outToServer.flush();
 	}
 }
