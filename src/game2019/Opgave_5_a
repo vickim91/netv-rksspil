@@ -2,13 +2,13 @@ Delopgave 5a: Definér hvilke informationer der skal sendes, og hvordan protokol
 
 Vi bruger den centraliserede model.
 
-Info-besked: Spiller moved, point for moved spiller og point for resterende spillere.
+Info besked: Spiller moved, point for moved spiller og point for resterende spillere.
 
-Step 1: Request - Ved denne model spørger spilleren den centrale knude om lov til at flytte sig, før han flytter sig.
-Step 2: Ack - Når den centrale knude har sagt OK. 
+Step 1: Request - Spilleren spørger den centrale knude om lov til at flytte sig.
+Step 2: Recieve ack - Spilleren modtager OK besked fra den centrale knude. 
 Step 3: Move - Spilleren flyttes.
-Step 4: Calculate - Der beregnes point for spilleren og de andre spillere.
-Step 5: Share info - Point informationer sendes til alle de andre spillere enten direkte eller gennem den centrale knude.
-Step 6: Done - Derefter sendes passende beskeder for at sige, at du er blevet færdig, og at andre spillere kan komme til.
+Step 4: Calculate - Spilleren beregner egne point og de andre spilleres points.
+Step 5: Share info - Spilleren sender point informationer til alle de andre spillere enten direkte eller gennem den centrale knude.
+Step 6: Done - Spilleren sender passende beskeder for at sige, at han er blevet færdig, og at andre spillere kan komme til.
 
-Passende beskeder: 
+Done beskeder: 
