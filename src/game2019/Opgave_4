@@ -15,8 +15,11 @@ Et par eksempler på en defekt besked, som fremkalder en NumberFormatException:
 1: "ThLoorui s1e  81  dow7 ndown".
 2: "Thor 1LL8o duoiwsne"
 
+det har evt noget at gøre med platform.runlater(). Prøv at rydde op i readmessagefromclient og se om du kan indcapsle så lidt som muligt i metoden. 
+
 Somme tider kan en defekt besked også fremkalde en tilsyneladende teleportation, hvor spillers navn og position er korrekt, 
 men hvor direction feltet ikke er udfyldt korrekt, således at programmet ikke genkender navnet og derfor bliver spilleren flyttet, 
 men bliver usynlig, indtil næste korrekte besked, hvor så spilleren bliver synlig igen.
 Et eksempel på en defekt besked som fremkalder usynlighed:
 "Louise 1 7 Tdhoor 1 w8n do".
+
