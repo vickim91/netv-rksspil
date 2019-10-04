@@ -221,7 +221,7 @@ public class Main extends Application {
 		} else {
 			Player p = getPlayerAt(x + delta_x, y + delta_y);
 
-			if (p != null && p != me) {
+			if (p != null ) {
 			
 				try {
 					Client.sendPoints(me.name, 10);
@@ -233,8 +233,13 @@ public class Main extends Application {
 			} else {
 				
 				try {
-					Client.sendPoints(me.name, 1);
+			
+					Client.sendNameAndPos(me.name, me.xpos +delta_x, me.ypos +delta_y, direction);
+					//Client.sendPoints(me.name, 1);
 				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -243,22 +248,22 @@ public class Main extends Application {
 //				x += delta_x;
 //				y += delta_y;
 
+<<<<<<< HEAD
 					try {
 						Client.sendNameAndPos(me.name, me.xpos +delta_x, me.ypos +delta_y, direction);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+=======
+			
+					
+			
+>>>>>>> master
 			}
 		}
 		scoreList.setText(getScoreList());
-		try {
-			Client.sendNameAndPos(me.name, me.xpos, me.ypos, me.direction);
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
 	}
 	
 	public static void playerMoved(Player player, int newX, int newY, String direction) {
@@ -439,7 +444,12 @@ public class Main extends Application {
 						}
 					}
 					playerMoved(player, Integer.parseInt(arr[1]),Integer.parseInt( arr[2]), arr[3]);
+<<<<<<< HEAD
 					
+=======
+					player.addPoints(1);
+				
+>>>>>>> master
 					}
 				}
 				else if (arr.length == 2) {
