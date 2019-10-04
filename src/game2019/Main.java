@@ -221,7 +221,7 @@ public class Main extends Application {
 		} else {
 			Player p = getPlayerAt(x + delta_x, y + delta_y);
 
-			if (p != null) {
+			if (p != null && p != me) {
 			
 				try {
 					Client.sendPoints(me.name, 10);
@@ -239,9 +239,9 @@ public class Main extends Application {
 					e.printStackTrace();
 				}
 
-				fields[x][y].setGraphic(new ImageView(image_floor));
-				x += delta_x;
-				y += delta_y;
+//				fields[x][y].setGraphic(new ImageView(image_floor));
+//				x += delta_x;
+//				y += delta_y;
 
 			
 					try {
