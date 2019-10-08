@@ -82,7 +82,8 @@ public class Server {
 		if(playerScores.containsKey(sSplit[1]))
 		{
 			playerScores.put(sSplit[1], playerScores.get(sSplit[1])+Integer.parseInt(sSplit[2]));
-			sendToClients(message);
+			String setS = "score "+ sSplit[1]+" " +playerScores.get(sSplit[1]);
+			sendToClients(setS);
 		}
 	}
 	public static void initIPs() {

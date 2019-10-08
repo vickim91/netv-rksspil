@@ -434,7 +434,7 @@ public class Main extends Application {
 					for(Player p : players)
 					{
 						if (arr[1].equals(p.name))
-							p.addPoints(Integer.parseInt(arr[2]));
+							p.setPoints(Integer.parseInt(arr[2]));
 					}
 				}
 				else {
