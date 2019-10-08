@@ -14,7 +14,7 @@ public class ServerThread extends Thread {
 		this.socket = socket;
 	}
 
-	public synchronized void run() {
+	public void run() {
 
 		while (true) {
 
@@ -22,11 +22,11 @@ public class ServerThread extends Thread {
 				BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				String message = inFromServer.readLine();
 				System.out.println("recieved: " + message);
-
-				for (ServerThread s : Server.getThreads()) {
-					System.out.println(s.toString());
-					s.pushMessage(message);
-				}
+				Server.sendToClients(message);
+//				for (ServerThread s : Server.getThreads()) {
+//					System.out.println(s.toString());
+//					s.pushMessage(message); //lav en hjælpe metode på serveren der er synkroniseret. 
+//				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

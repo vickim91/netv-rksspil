@@ -34,6 +34,13 @@ public class Server {
 	
 		}
 	}
+	public static synchronized void sendToClients(String message)
+	{
+		for (ServerThread t : threads)
+		{
+			t.pushMessage(message);
+		}
+	}
 	
 	public static void initIPs() {
 		//initialize Ips array
