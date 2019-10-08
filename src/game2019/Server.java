@@ -4,6 +4,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Server {
 	
@@ -12,6 +13,7 @@ public class Server {
 	private static ServerSocket welcomeSocket;
 	private static Socket connectionSocket;
 	private static HashMap<String, Integer> playerScores = new HashMap();
+	private String[] playerNames;
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("server running");
@@ -49,8 +51,17 @@ public class Server {
 	{
 		String[] sSplit = message.split(" ");
 		if(!playerScores.containsKey(sSplit[1]))
+		{
 		playerScores.put(sSplit[1], 0);
+	
+		}
+//		for (Map.Entry<String, Integer> e : playerScores.entrySet())
+//		{
+//			sendToClients("spawn " + e.getKey())
+//		}
 		sendToClients(message);
+
+
 		
 	}
 	public static void movePlayer(String message)

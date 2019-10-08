@@ -452,6 +452,12 @@ public class Main extends Application {
 				}
 				else if (arr[0].equals("move"))
 				{
+					if(!players.contains(player)) {
+						
+						players.add(player);
+						spawnPlayer(player, Integer.parseInt( arr[2]), Integer.parseInt(arr[3]), arr[4]);
+						
+					}
 					for(Player p : players) {
 						
 						if(p.equals(player)) {
