@@ -153,6 +153,7 @@ public class Main extends Application {
 
 				case UP:
 					planMove(0, -1, "up");
+				
 //					try {
 //						Client.sendNameAndPos(me.name, me.xpos, me.ypos-1, "up");
 //					} catch (Exception e) {
@@ -161,7 +162,7 @@ public class Main extends Application {
 //					}
 					break;
 				case DOWN:
-					planMove(0, +1, "down");
+					planMove(0, 1, "down");
 //					try {
 //						Client.sendNameAndPos(me.name, me.xpos, me.ypos+1, "down");
 //					} catch (Exception e) {
@@ -179,7 +180,8 @@ public class Main extends Application {
 //					}
 					break;
 				case RIGHT:
-					planMove(+1, 0, "right");
+					planMove(1, 0, "right");
+			
 //					try {
 //						Client.sendNameAndPos(me.name, me.xpos+1, me.ypos, "right");
 //					} catch (Exception e) {
@@ -195,8 +197,8 @@ public class Main extends Application {
 
 			// Setting up standard players
 
-//			me = new Player("Victor", 8, 4, "down");
-//			players.add(me);
+			//me = new Player("Victor", 8, 4, "down");
+			//players.add(me);
 //			fields[9][4].setGraphic(new ImageView(hero_up));
 
 			scoreList.setText(getScoreList());
@@ -207,13 +209,16 @@ public class Main extends Application {
 	}
 
 	public void planMove(int delta_x, int delta_y, String direction) {
+		System.out.println("planMove ");
 		me.direction = direction;
 		int x = me.getXpos(), y = me.getYpos();
+		System.out.println("my xpos: "+x + " my ypos: "+y +" delta x: " +delta_x + " delta y: "+delta_y);
 
 		if (board[y + delta_y].charAt(x + delta_x) == 'w') {
+			System.out.println("wall"); 
 
 			try {
-				Client.sendPoints(me.name, me.point-1);
+				Client.sendPoints(me.name, -1);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -221,11 +226,12 @@ public class Main extends Application {
 		} else {
 			Player p = getPlayerAt(x + delta_x, y + delta_y);
 
-			if (p != null ) {
-			
+			if (p != null && !p.equals(me) ) {
+				
+			System.out.println("nullcheck"); 
 				try {
-					Client.sendPoints(me.name, me.point +10);
-					Client.sendPoints(p.name, p.point-10);
+					Client.sendPoints(me.name, 10);
+					Client.sendPoints(p.name, -10);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -234,7 +240,8 @@ public class Main extends Application {
 				
 				try {
 			
-					Client.sendNameAndPos(me.name, me.xpos +delta_x, me.ypos +delta_y, direction);
+					Client.sendNameAndPos(me.name, (me.xpos +delta_x), (me.ypos +delta_y), direction);
+					System.out.println("send new move: "+ (me.xpos+delta_x) + " " + (me.ypos+delta_y));
 					//Client.sendPoints(me.name, 1);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -248,12 +255,12 @@ public class Main extends Application {
 //				x += delta_x;
 //				y += delta_y;
 
-					try {
-						Client.sendNameAndPos(me.name, me.xpos +delta_x, me.ypos +delta_y, direction);
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+//					try {
+//						Client.sendNameAndPos(me.name, me.xpos +delta_x, me.ypos +delta_y, direction);
+//					} catch (Exception e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
 			}
 		}
 		scoreList.setText(getScoreList());
@@ -264,21 +271,21 @@ public class Main extends Application {
 		player.direction = direction;
 		int x = player.getXpos(), y = player.getYpos();
 
-		if (board[newY].charAt(newX) == 'w') {
-			//player.addPoints(-1);
-		
-		} else {
-		
-			Player p = getPlayerAt(newX, newY);
-	
-		
-
-			if (p != null && p != player) {
-				//player.addPoints(10);
-				//p.addPoints(-10);
-			
-			} else {
-				//player.addPoints(1);
+//		if (board[newY].charAt(newX) == 'w') {
+//			//player.addPoints(-1);
+//		
+//		} else {
+//		
+//			Player p = getPlayerAt(newX, newY);
+//	
+//		
+//
+//			if (p != null && p.equals( player)) {
+//				//player.addPoints(10);
+//				//p.addPoints(-10);
+//			
+//			} else {
+//				//player.addPoints(1);
 			
 
 				fields[x][y].setGraphic(new ImageView(image_floor));
@@ -303,21 +310,24 @@ public class Main extends Application {
 				
 				player.setXpos(x);
 				player.setYpos(y);
-			}
-		}
+				System.out.println("player moved" + player.getXpos() + player.getYpos());
+				
+			//}
+		//}
 		
 		scoreList.setText(getScoreList());
-		try {
-		//	Client.sendNameAndPos(player.name, player.xpos, player.ypos, player.direction);
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//		//	Client.sendNameAndPos(player.name, player.xpos, player.ypos, player.direction);
+//			
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 	
 	public static void spawnPlayer(Player player, int newX, int newY, String direction) {
 		player.direction = direction;
+		System.out.println("spawned player");
 		int x = player.getXpos(), y = player.getYpos();
 
 		if (board[newY].charAt(newX) == 'w') {
@@ -326,7 +336,7 @@ public class Main extends Application {
 		
 			Player p = getPlayerAt(newX, newY);
 	
-			if (p != null && p != player) {
+			if (p != null && p.equals( player)) {
 		
 			} else {
 			
@@ -352,6 +362,7 @@ public class Main extends Application {
 				
 				player.setXpos(x);
 				player.setYpos(y);
+				players.add(player);
 			}
 		}
 		
@@ -392,12 +403,12 @@ public class Main extends Application {
 		try {
 			Client.Connect(ip);
 
-			me = new Player("Victor", 9, 4, "down");
+			me = new Player("Victor", 8, 4, "down");
 			players.add(me);
 			
 	
-			Client.sendNameAndPos(me.name, me.xpos, me.ypos, me.direction);
-			
+			//Client.sendNameAndPos(me.name, me.xpos, me.ypos, me.direction);
+			Client.spawnPlayer(me.name, me.xpos, me.ypos, me.direction);
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -405,7 +416,7 @@ public class Main extends Application {
 		}
 	}
 	
-	public synchronized static void readMessagefromClient (String message) {
+	public static void readMessagefromClient (String message) {
 		
 		javafx.application.Platform.runLater(new Runnable(){
 			@Override
@@ -413,53 +424,85 @@ public class Main extends Application {
 				
 				String[] arr = message.split(" ");
 				
-				System.out.println("message from client "+ message);
+				System.out.println("message from client: "+ message);
 				
 //				for(Player p : players) { // lav en compareTo istedet
 //					playerNames.add(p.name);
 //				}
-				
-				if(arr.length ==4)
+				if(arr[0].equals("score"))
 				{
-				Player player  = new Player(arr[0],Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
-								
-				if(!players.contains(player)) {
-										
-					players.add(player);
-					spawnPlayer(player, Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
-					
+					for(Player p : players)
+					{
+						if (arr[1].equals(p.name))
+							p.addPoints(Integer.parseInt(arr[2]));
+					}
 				}
 				else {
+				Player player  = new Player(arr[1],Integer.parseInt( arr[2]), Integer.parseInt(arr[3]), arr[4]);
 				
+				if(arr[0].equals("spawn"))
+				{
+					
+					if(!players.contains(player)) {
+											
+						players.add(player);
+						spawnPlayer(player, Integer.parseInt( arr[2]), Integer.parseInt(arr[3]), arr[4]);
+						
+					}
+				}
+				else if (arr[0].equals("move"))
+				{
 					for(Player p : players) {
 						
 						if(p.equals(player)) {
 							player = p;
 						}
 					}
-					playerMoved(player, Integer.parseInt(arr[1]),Integer.parseInt( arr[2]), arr[3]);
-
-					//player.addPoints(1);
-					try {
-						Client.sendPoints(player.name, player.point +1);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-					}
+					playerMoved(player, Integer.parseInt(arr[2]),Integer.parseInt( arr[3]), arr[4]);
 				}
-				else if (arr.length == 2)
-				{
-					for (Player p : players)
-					{
-						if (p.name.equals(arr[0]))
-						{
-							p.point =(Integer.parseInt(arr[1]));
-						}
-					}
 				}
-
+				
+//				if(arr.length ==4)
+//				{
+//				Player player  = new Player(arr[0],Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
+//								
+//				if(!players.contains(player)) {
+//										
+//					players.add(player);
+//					spawnPlayer(player, Integer.parseInt( arr[1]), Integer.parseInt(arr[2]), arr[3]);
+//					
+//				}
+//				else {
+//				
+//					for(Player p : players) {
+//						
+//						if(p.equals(player)) {
+//							player = p;
+//						}
+//					}
+//					playerMoved(player, Integer.parseInt(arr[1]),Integer.parseInt( arr[2]), arr[3]);
+//
+//					//player.addPoints(1);
+//					try {
+//						Client.sendPoints(player.name, player.point +1);
+//					} catch (IOException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//
+//					}
+//				}
+//				else if (arr.length == 2)
+//				{
+//					for (Player p : players)
+//					{
+//						if (p.name.equals(arr[0]))
+//						{
+//							p.point =(Integer.parseInt(arr[1]));
+//						}
+//					}
+//				}
+//
 			}		
 	});
 	}

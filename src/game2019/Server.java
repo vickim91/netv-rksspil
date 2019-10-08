@@ -3,6 +3,7 @@ package game2019;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Server {
 	
@@ -10,6 +11,8 @@ public class Server {
 	private static ArrayList<ServerThread> threads = new ArrayList();
 	private static ServerSocket welcomeSocket;
 	private static Socket connectionSocket;
+	private static HashMap<String, Integer> playerScores = new HashMap();
+	
 	public static void main(String[] args) throws Exception {
 		System.out.println("server running");
 		initIPs();
@@ -42,6 +45,35 @@ public class Server {
 		}
 	}
 	
+	public static void addPlayer(String message)
+	{
+		String[] sSplit = message.split(" ");
+		if(!playerScores.containsKey(sSplit[1]))
+		playerScores.put(sSplit[1], 0);
+		sendToClients(message);
+		
+	}
+	public static void movePlayer(String message)
+	{
+		sendToClients(message);
+		String[] sSplit = message.split(" ");
+		String scoreString = "score " +  sSplit[1] +" 1 ";
+		System.out.println("scoreString "+scoreString);
+		addPointToPlayer(scoreString);
+	}
+	public HashMap<String, Integer> getPlayerScores()
+	{
+		return this.playerScores;
+	}
+	public static void addPointToPlayer(String message)
+	{
+		String[] sSplit = message.split(" ");
+		if(playerScores.containsKey(sSplit[1]))
+		{
+			playerScores.put(sSplit[1], playerScores.get(sSplit[1])+Integer.parseInt(sSplit[2]));
+			sendToClients(message);
+		}
+	}
 	public static void initIPs() {
 		//initialize Ips array
 		//ips = new String[] {"10.24.64.192", "10.24.2.36", "10.24.4.217"};

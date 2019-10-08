@@ -22,7 +22,21 @@ public class ServerThread extends Thread {
 				BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				String message = inFromServer.readLine();
 				System.out.println("recieved: " + message);
-				Server.sendToClients(message);
+				String[] sSplit = message.split(" ");
+				if(sSplit[0].equals("spawn") && sSplit.length ==5)
+				{
+					Server.addPlayer(message);
+				}
+				else if (sSplit[0].equals("move"))
+				{
+					//Server.sendToClients(message);
+					Server.movePlayer(message);
+				}
+				else if (sSplit[0].equals("score"))
+				{
+					Server.addPointToPlayer(message);
+				}
+		
 //				for (ServerThread s : Server.getThreads()) {
 //					System.out.println(s.toString());
 //					s.pushMessage(message); //lav en hjælpe metode på serveren der er synkroniseret. 
