@@ -81,7 +81,9 @@ public class Server {
 		String[] sSplit = message.split(" ");
 		if(playerScores.containsKey(sSplit[1]))
 		{
-			playerScores.put(sSplit[1], playerScores.get(sSplit[1])+Integer.parseInt(sSplit[2]));
+			int score = playerScores.get(sSplit[1]);
+			int pointsToAdd = Integer.parseInt(sSplit[2]);
+			playerScores.put(sSplit[1], (score+pointsToAdd));
 			String setS = "score "+ sSplit[1]+" " +playerScores.get(sSplit[1]);
 			sendToClients(setS);
 		}
