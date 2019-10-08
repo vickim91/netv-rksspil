@@ -9,7 +9,7 @@ import java.util.Map;
 public class Server {
 	
 	private static String[] ips;
-	private static ArrayList<ServerThread> threads = new ArrayList();
+	private static ArrayList<ServerWriteThread> threads = new ArrayList();
 	private static ServerSocket welcomeSocket;
 	private static Socket connectionSocket;
 	private static HashMap<String, Integer> playerScores = new HashMap();
@@ -28,10 +28,10 @@ public class Server {
 
 
 		ServerThread serverThread = new ServerThread(connectionSocket);
-		
-		if(!threads.contains(serverThread))
+		ServerWriteThread serverWriteThread = new ServerWriteThread(connectionSocket);
+		if(!threads.contains(serverWriteThread))
 		{
-			threads.add(serverThread);
+			threads.add(serverWriteThread);
 			System.out.println("NUMBER OF THREADS " + threads.size());
 		}
 		
@@ -41,7 +41,7 @@ public class Server {
 	}
 	public static synchronized void sendToClients(String message)
 	{
-		for (ServerThread t : threads)
+		for (ServerWriteThread t : threads)
 		{
 			t.pushMessage(message);
 		}
@@ -102,7 +102,7 @@ public class Server {
 		this.connectionSocket = connectionSocket;
 	}
 
-	public static ArrayList<ServerThread> getThreads() {
+	public static ArrayList<ServerWriteThread> getThreads() {
 		return threads;
 	}
 }

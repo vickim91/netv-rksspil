@@ -48,19 +48,19 @@ public class ServerThread extends Thread {
 		}
 	}
 
-	public void pushMessage(String message) {
-
-		DataOutputStream outToClient;
-
-		try {
-			outToClient = new DataOutputStream(socket.getOutputStream());
-			outToClient.writeBytes(message + "\n");
-			outToClient.flush();
-			System.out.println("pushed " + message);
-
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	}
+//	public void pushMessage(String message) {
+//
+//		DataOutputStream outToClient;
+//
+//		try {
+//			outToClient = new DataOutputStream(socket.getOutputStream());
+//			outToClient.writeBytes(message + "\n");
+//			outToClient.flush();
+//			System.out.println("pushed " + message);
+//
+//		} catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//	}
 }

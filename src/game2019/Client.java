@@ -7,12 +7,14 @@ import java.net.Socket;
 public class Client {
 
 	private static Socket clientSocket;
+	private static ClientThreadWrite clientThreadWrite;
 
 	public static void Connect(String ip) throws Exception {
 
 		clientSocket = new Socket(ip, 2000);
 
 		ClientThread clientThread = new ClientThread(clientSocket);
+		clientThreadWrite = new ClientThreadWrite(clientSocket);
 
 		clientThread.start();
 		System.out.println("client connected");
@@ -21,22 +23,15 @@ public class Client {
 	// sender navn og position lige nu er det bare for start position, men kan evt
 	// udvides som en mere generelt implementation
 	public  static void sendNameAndPos(String name, int x, int y, String direction) throws Exception {
-		// System.out.println(clientSocket);
-		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-		outToServer.writeBytes("move "+name + " " + x + " " + y + " " + direction + "\n");
-		outToServer.flush();
+		clientThreadWrite.sendNameAndPos(name, x, y, direction);
 	}
 	//en metode til at sende ændring i point
 	public  static void sendPoints(String name, int points) throws IOException {
 		
-		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-		outToServer.writeBytes("score "+ name + " " + points +"\n");
-		outToServer.flush();
+		clientThreadWrite.sendPoints(name, points);
 	}
 	public static void spawnPlayer(String name, int x, int y, String direction) throws IOException
 	{
-		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-		outToServer.writeBytes("spawn " + name + " " + x + " " + y + " " + direction + "\n");
-		outToServer.flush();
+	clientThreadWrite.spawnPlayer(name, x, y, direction);
 	}
 }
