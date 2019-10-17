@@ -47,7 +47,7 @@ public class Server {
 		}
 	}
 	
-	public static void addPlayer(String message)
+	public synchronized  static void addPlayer(String message)
 	{
 		String[] sSplit = message.split(" ");
 		if(!playerScores.containsKey(sSplit[1]))
@@ -64,7 +64,7 @@ public class Server {
 
 		
 	}
-	public static void movePlayer(String message)
+	public synchronized static void movePlayer(String message)
 	{
 		sendToClients(message);
 		String[] sSplit = message.split(" ");
@@ -76,7 +76,7 @@ public class Server {
 	{
 		return this.playerScores;
 	}
-	public static void addPointToPlayer(String message)
+	public synchronized static void addPointToPlayer(String message)
 	{
 		String[] sSplit = message.split(" ");
 		if(playerScores.containsKey(sSplit[1]))

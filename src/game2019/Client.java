@@ -22,15 +22,15 @@ public class Client {
 
 	// sender navn og position lige nu er det bare for start position, men kan evt
 	// udvides som en mere generelt implementation
-	public synchronized  static void sendNameAndPos(String name, int x, int y, String direction) throws Exception {
+	public  static void sendNameAndPos(String name, int x, int y, String direction) throws Exception {
 		clientThreadWrite.sendNameAndPos(name, x, y, direction);
 	}
 	//en metode til at sende ændring i point
-	public synchronized  static void sendPoints(String name, int points) throws IOException {
+	public  static void sendPoints(String name, int points) throws IOException {
 		
 		clientThreadWrite.sendPoints(name, points);
 	}
-	public synchronized static void spawnPlayer(String name, int x, int y, String direction) throws IOException
+	public static void spawnPlayer(String name, int x, int y, String direction) throws IOException
 	{
 	clientThreadWrite.spawnPlayer(name, x, y, direction);
 	}
