@@ -9,7 +9,8 @@ import java.util.Map;
 public class Server {
 	
 	private static String[] ips;
-	private static ArrayList<ServerWriteThread> threads = new ArrayList();
+	private static ArrayList<ServerWriteThread> writeThreads = new ArrayList();
+	private static ArrayList<ServerThread> readThreads = new ArrayList();
 	private static ServerSocket welcomeSocket;
 	private static Socket connectionSocket;
 	private static HashMap<String, Integer> playerScores = new HashMap();
@@ -29,11 +30,17 @@ public class Server {
 
 		ServerThread serverThread = new ServerThread(connectionSocket);
 		ServerWriteThread serverWriteThread = new ServerWriteThread(connectionSocket);
-		if(!threads.contains(serverWriteThread))
+		if(!writeThreads.contains(serverWriteThread))
 		{
-			threads.add(serverWriteThread);
+			writeThreads.add(serverWriteThread);
 			//system.out.println("NUMBER OF THREADS " + threads.size());
 		}
+		if(!readThreads.contains(serverThread))
+		{
+			readThreads.add(serverThread);
+			//system.out.println("NUMBER OF THREADS " + threads.size());
+		}
+		
 		
 		serverThread.start();
 	
@@ -41,11 +48,13 @@ public class Server {
 	}
 	public static synchronized void sendToClients(String message)
 	{
-		for (ServerWriteThread t : threads)
+		for (ServerWriteThread t : writeThreads)
 		{
-			if(t.getReady())
+		
 			t.pushMessage(message);
+			
 		}
+
 	}
 	
 	public static void addPlayer(String message)
@@ -62,19 +71,17 @@ public class Server {
 	}
 	public static void movePlayer(String message)
 	{
-		if(ready) {
-		sendToClients(message);
-		ready = false;
+		boolean allReady = true;
+		for(ServerThread t : readThreads)
+		{
+			allReady=t.isReady();
 		}
+		if(allReady)
+		sendToClients(message);
+	
 		
 	}
-	public static synchronized void ready()
-	{
-		for(ServerWriteThread t : threads)
-		{
-			t.setReady(true);
-		}
-	}
+
 	public HashMap<String, Integer> getPlayerScores()
 	{
 		return this.playerScores;
@@ -94,6 +101,6 @@ public class Server {
 	}
 
 	public static ArrayList<ServerWriteThread> getThreads() {
-		return threads;
+		return writeThreads;
 	}
 }

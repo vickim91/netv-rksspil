@@ -216,9 +216,6 @@ public class Main extends Application {
 		player.direction = direction;
 		int x = player.getXpos(), y = player.getYpos();
 
-
-
-				
 				if (board[newY].charAt(newX) == 'w')
 				{
 					System.out.println("mur");
@@ -258,15 +255,11 @@ public class Main extends Application {
 				}
 				}
 				//system.out.println("player moved" + player.getXpos() + player.getYpos());
-				
+		
 
 		scoreList.setText(getScoreList());
-		try {
-			Client.sendReady();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+
 
 	}
 	
@@ -436,7 +429,7 @@ public class Main extends Application {
 					playerMoved(player, Integer.parseInt(arr[2]),Integer.parseInt( arr[3]), arr[4]);
 				}
 				}
-				
+			
 
 			}		
 	});

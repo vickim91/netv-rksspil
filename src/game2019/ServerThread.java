@@ -9,6 +9,7 @@ import java.net.Socket;
 public class ServerThread extends Thread {
 
 	private Socket socket;
+	private boolean ready = true;
 
 
 	public ServerThread(Socket socket) {
@@ -36,8 +37,9 @@ public class ServerThread extends Thread {
 					Server.movePlayer(message);
 			
 				}
-				else if (message.equals("ready")){
-					Server.ready();
+				else if (sSplit[0].equals("ready")){
+					
+					setReady(true);
 				}
 				
 			
@@ -49,5 +51,14 @@ public class ServerThread extends Thread {
 			}
 		}
 	}
+
+	public boolean isReady() {
+		return ready;
+	}
+
+	public void setReady(boolean ready) {
+		this.ready = ready;
+	}
+	
 
 }

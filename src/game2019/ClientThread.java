@@ -28,6 +28,13 @@ public class ClientThread extends Thread {
 			
 				if(message != null){
 					Main.readMessagefromClient(message);
+					try {
+						Client.sendReady();
+						System.out.println("send ready from main");
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 				
 			} catch (IOException e) {
