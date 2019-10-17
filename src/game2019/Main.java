@@ -376,7 +376,7 @@ public class Main extends Application {
 		}
 	}
 	
-	public static void readMessagefromClient (String message) {
+	public synchronized static void readMessagefromClient (String message) {
 		
 		javafx.application.Platform.runLater(new Runnable(){
 			@Override
