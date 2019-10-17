@@ -35,6 +35,7 @@ public class ServerThread extends Thread {
 				{
 					//Server.sendToClients(message);
 					Server.movePlayer(message);
+					setReady(false);
 			
 				}
 				else if (sSplit[0].equals("ready")){

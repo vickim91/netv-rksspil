@@ -52,7 +52,6 @@ public class Server {
 		{
 		
 			t.pushMessage(message);
-			
 		}
 
 	}
