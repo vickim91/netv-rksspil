@@ -34,7 +34,7 @@ public class ServerThread extends Thread {
 					//Server.sendToClients(message);
 					Server.movePlayer(message);
 				}
-				else {
+				else if (message.equals("ready")){
 					Server.ready();
 				}
 				
