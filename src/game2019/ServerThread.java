@@ -32,10 +32,10 @@ public class ServerThread extends Thread {
 					//Server.sendToClients(message);
 					Server.movePlayer(message);
 				}
-				else if (sSplit[0].equals("score"))
-				{
-					Server.addPointToPlayer(message);
-				}
+//				else if (sSplit[0].equals("score"))
+//				{
+//					Server.addPointToPlayer(message);
+//				}
 		
 //				for (ServerThread s : Server.getThreads()) {
 //					//system.out.println(s.toString());

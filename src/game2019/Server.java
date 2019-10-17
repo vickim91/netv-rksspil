@@ -64,7 +64,7 @@ public class Server {
 
 		
 	}
-	public synchronized static void movePlayer(String message)
+	public static void movePlayer(String message)
 	{
 		sendToClients(message);
 		String[] sSplit = message.split(" ");
@@ -76,18 +76,18 @@ public class Server {
 	{
 		return this.playerScores;
 	}
-	public synchronized static void addPointToPlayer(String message)
-	{
-		String[] sSplit = message.split(" ");
-		if(playerScores.containsKey(sSplit[1]))
-		{
-			int score = playerScores.get(sSplit[1]);
-			int pointsToAdd = Integer.parseInt(sSplit[2]);
-			playerScores.put(sSplit[1], (score+pointsToAdd));
-			String setS = "score "+ sSplit[1]+" " +playerScores.get(sSplit[1]);
-			sendToClients(setS);
-		}
-	}
+//	public static void addPointToPlayer(String message)
+//	{
+//		String[] sSplit = message.split(" ");
+//		if(playerScores.containsKey(sSplit[1]))
+//		{
+//			int score = playerScores.get(sSplit[1]);
+//			int pointsToAdd = Integer.parseInt(sSplit[2]);
+//			playerScores.put(sSplit[1], (score+pointsToAdd));
+//			String setS = "score "+ sSplit[1]+" " +playerScores.get(sSplit[1]);
+//			sendToClients(setS);
+//		}
+//	}
 	public static void initIPs() {
 		//initialize Ips array
 		//ips = new String[] {"10.24.64.192", "10.24.2.36", "10.24.4.217"};

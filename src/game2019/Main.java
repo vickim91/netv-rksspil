@@ -229,7 +229,7 @@ public class Main extends Application {
 				
 				if (p != null && !p.equals(player) ) {
 					player.addPoints(10);
-					p.addPoints(10);
+					p.addPoints(-10);
 				}
 				else {
 					fields[x][y].setGraphic(new ImageView(image_floor));
