@@ -277,11 +277,10 @@ public class Main extends Application {
 //	
 //			if (p != null && p.equals( player)) {
 		
-			} else {
+			} else if(newX != x || newY != y) {
 			
 				fields[x][y].setGraphic(new ImageView(image_floor));
-				x =newX;
-				y =newY;
+				
 
 				if (direction.equals("right")) {
 					fields[x][y].setGraphic(new ImageView(hero_right));
@@ -299,8 +298,8 @@ public class Main extends Application {
 					fields[x][y].setGraphic(new ImageView(hero_down));
 				};
 				
-				player.setXpos(x);
-				player.setYpos(y);
+				player.setXpos(newX);
+				player.setYpos(newY);
 		
 			
 		}

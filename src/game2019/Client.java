@@ -25,11 +25,7 @@ public class Client {
 	public  static void sendNameAndPos(String name, int x, int y, String direction) throws Exception {
 		clientThreadWrite.sendNameAndPos(name, x, y, direction);
 	}
-	//en metode til at sende ændring i point
-	public  static void sendPoints(String name, int points) throws IOException {
-		
-		clientThreadWrite.sendPoints(name, points);
-	}
+
 	public static void spawnPlayer(String name, int x, int y, String direction) throws IOException
 	{
 	clientThreadWrite.spawnPlayer(name, x, y, direction);

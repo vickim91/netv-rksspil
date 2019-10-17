@@ -27,19 +27,12 @@ public class ServerThread extends Thread {
 				{
 					Server.addPlayer(message);
 				}
-				else if (sSplit[0].equals("move"))
+				else if (sSplit[0].equals("move")&& sSplit.length ==5)
 				{
 					//Server.sendToClients(message);
 					Server.movePlayer(message);
 				}
-//				else if (sSplit[0].equals("score"))
-//				{
-//					Server.addPointToPlayer(message);
-//				}
-		
-//				for (ServerThread s : Server.getThreads()) {
-//					//system.out.println(s.toString());
-//					s.pushMessage(message); //lav en hjælpe metode på serveren der er synkroniseret. 
+//			
 //				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -48,19 +41,5 @@ public class ServerThread extends Thread {
 		}
 	}
 
-//	public void pushMessage(String message) {
-//
-//		DataOutputStream outToClient;
-//
-//		try {
-//			outToClient = new DataOutputStream(socket.getOutputStream());
-//			outToClient.writeBytes(message + "\n");
-//			outToClient.flush();
-//			//system.out.println("pushed " + message);
-//
-//		} catch (IOException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//	}
+
 }

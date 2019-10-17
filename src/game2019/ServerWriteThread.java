@@ -14,18 +14,7 @@ public class ServerWriteThread extends Thread {
 		this.socket = socket;
 	}
 
-public void run()
-{
-//	while (true)
-//	{
-//		try {
-//			BufferedReader outToClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
-}
+
 
 public void pushMessage(String message) {
 
