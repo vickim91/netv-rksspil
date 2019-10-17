@@ -193,35 +193,13 @@ public class Main extends Application {
 		int x = me.getXpos(), y = me.getYpos();
 		//system.out.println("my xpos: "+x + " my ypos: "+y +" delta x: " +delta_x + " delta y: "+delta_y);
 
-		if (board[y + delta_y].charAt(x + delta_x) == 'w') {
-			//system.out.println("wall"); 
-
-			try {
-				Client.sendPoints(me.name, -1);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} else {
-			Player p = getPlayerAt(x + delta_x, y + delta_y);
-
-			if (p != null && !p.equals(me) ) {
-				
-			//system.out.println("nullcheck"); 
-				try {
-					Client.sendPoints(me.name, 10);
-					Client.sendPoints(p.name, -10);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} else {
+		
 				
 				try {
 			
 					Client.sendNameAndPos(me.name, (me.xpos +delta_x), (me.ypos +delta_y), direction);
 					//system.out.println("send new move: "+ (me.xpos+delta_x) + " " + (me.ypos+delta_y));
-					//Client.sendPoints(me.name, 1);
+					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -230,18 +208,6 @@ public class Main extends Application {
 					e.printStackTrace();
 				}
 
-//				fields[x][y].setGraphic(new ImageView(image_floor));
-//				x += delta_x;
-//				y += delta_y;
-
-//					try {
-//						Client.sendNameAndPos(me.name, me.xpos +delta_x, me.ypos +delta_y, direction);
-//					} catch (Exception e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-			}
-		}
 		scoreList.setText(getScoreList());
 	
 	}
@@ -252,9 +218,23 @@ public class Main extends Application {
 
 
 
-				fields[x][y].setGraphic(new ImageView(image_floor));
-				x =newX;
-				y =newY;
+				
+				if (board[newY].charAt(newX) == 'w')
+				{
+					System.out.println("mur");
+					player.addPoints(-1);
+				}
+				else {
+				Player p = getPlayerAt(newX, newY);
+				
+				if (p != null && !p.equals(player) ) {
+					player.addPoints(10);
+					p.addPoints(10);
+				}
+				else {
+					fields[x][y].setGraphic(new ImageView(image_floor));
+					x =newX;
+					y =newY;
 
 				if (direction.equals("right")) {
 					fields[x][y].setGraphic(new ImageView(hero_right));
@@ -274,6 +254,9 @@ public class Main extends Application {
 				
 				player.setXpos(x);
 				player.setYpos(y);
+				player.addPoints(1);
+				}
+				}
 				//system.out.println("player moved" + player.getXpos() + player.getYpos());
 				
 
@@ -424,6 +407,10 @@ public class Main extends Application {
 											
 						players.add(player);
 						spawnPlayer(player, Integer.parseInt( arr[2]), Integer.parseInt(arr[3]), arr[4]);
+						for(Player p : players)
+						{
+							p.setPoints(0);
+						}
 						
 					}
 				}

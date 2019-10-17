@@ -47,7 +47,7 @@ public class Server {
 		}
 	}
 	
-	public synchronized  static void addPlayer(String message)
+	public synchronized static void addPlayer(String message)
 	{
 		String[] sSplit = message.split(" ");
 		if(!playerScores.containsKey(sSplit[1]))
@@ -70,7 +70,7 @@ public class Server {
 		String[] sSplit = message.split(" ");
 		String scoreString = "score " +  sSplit[1] +" 1 ";
 		//system.out.println("scoreString "+scoreString);
-		addPointToPlayer(scoreString);
+	
 	}
 	public HashMap<String, Integer> getPlayerScores()
 	{
