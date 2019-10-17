@@ -25,7 +25,10 @@ public class Client {
 	public  static void sendNameAndPos(String name, int x, int y, String direction) throws Exception {
 		clientThreadWrite.sendNameAndPos(name, x, y, direction);
 	}
-
+	public static void sendReady() throws Exception
+	{
+		clientThreadWrite.sendReady();
+	}
 	public static void spawnPlayer(String name, int x, int y, String direction) throws IOException
 	{
 	clientThreadWrite.spawnPlayer(name, x, y, direction);

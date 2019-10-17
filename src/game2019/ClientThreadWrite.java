@@ -21,7 +21,12 @@ public class ClientThreadWrite extends Thread{
 		outToServer.writeBytes("move "+name + " " + x + " " + y + " " + direction + "\n");
 		outToServer.flush();
 	}
-
+	public void sendReady() throws Exception
+	{
+		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+		outToServer.writeBytes("ready \n");
+		outToServer.flush();
+	}
 	public void spawnPlayer(String name, int x, int y, String direction) throws IOException
 	{
 		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());

@@ -14,7 +14,7 @@ public class Server {
 	private static Socket connectionSocket;
 	private static HashMap<String, Integer> playerScores = new HashMap();
 	private String[] playerNames;
-	
+	private static boolean ready = true;
 	public static void main(String[] args) throws Exception {
 		//system.out.println("server running");
 		initIPs();
@@ -66,28 +66,21 @@ public class Server {
 	}
 	public static void movePlayer(String message)
 	{
+		if(ready) {
 		sendToClients(message);
-		//String[] sSplit = message.split(" ");
-		//String scoreString = "score " +  sSplit[1] +" 1 ";
-		//system.out.println("scoreString "+scoreString);
-	
+		ready = false;
+		}
+		
+	}
+	public static synchronized void ready()
+	{
+		ready = true;
 	}
 	public HashMap<String, Integer> getPlayerScores()
 	{
 		return this.playerScores;
 	}
-//	public static void addPointToPlayer(String message)
-//	{
-//		String[] sSplit = message.split(" ");
-//		if(playerScores.containsKey(sSplit[1]))
-//		{
-//			int score = playerScores.get(sSplit[1]);
-//			int pointsToAdd = Integer.parseInt(sSplit[2]);
-//			playerScores.put(sSplit[1], (score+pointsToAdd));
-//			String setS = "score "+ sSplit[1]+" " +playerScores.get(sSplit[1]);
-//			sendToClients(setS);
-//		}
-//	}
+
 	public static void initIPs() {
 		//initialize Ips array
 		//ips = new String[] {"10.24.64.192", "10.24.2.36", "10.24.4.217"};

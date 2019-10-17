@@ -261,6 +261,12 @@ public class Main extends Application {
 				
 
 		scoreList.setText(getScoreList());
+		try {
+			Client.sendReady();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 	
