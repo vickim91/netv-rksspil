@@ -43,6 +43,7 @@ public class Server {
 	{
 		for (ServerWriteThread t : threads)
 		{
+			if(t.getReady())
 			t.pushMessage(message);
 		}
 	}
@@ -55,14 +56,9 @@ public class Server {
 		playerScores.put(sSplit[1], 0);
 	
 		}
-//		for (Map.Entry<String, Integer> e : playerScores.entrySet())
-//		{
-//			sendToClients("spawn " + e.getKey())
-//		}
+
 		sendToClients(message);
 
-
-		
 	}
 	public static void movePlayer(String message)
 	{
@@ -74,7 +70,10 @@ public class Server {
 	}
 	public static synchronized void ready()
 	{
-		ready = true;
+		for(ServerWriteThread t : threads)
+		{
+			t.setReady(true);
+		}
 	}
 	public HashMap<String, Integer> getPlayerScores()
 	{
@@ -82,8 +81,7 @@ public class Server {
 	}
 
 	public static void initIPs() {
-		//initialize Ips array
-		//ips = new String[] {"10.24.64.192", "10.24.2.36", "10.24.4.217"};
+	
 		ips = new String[] {"localhost"};
 	}
 	

@@ -8,7 +8,7 @@ import java.net.Socket;
 
 public class ServerWriteThread extends Thread {
 	private Socket socket;
-	
+	private boolean ready =true;
 	public ServerWriteThread(Socket socket)
 	{
 		this.socket = socket;
@@ -30,5 +30,14 @@ public void pushMessage(String message) {
 		// TODO Auto-generated catch block
 		e1.printStackTrace();
 	}
+	ready = false;
+}
+public boolean getReady()
+{
+	return ready;
+}
+public void setReady(boolean state)
+{
+	ready = state;
 }
 }

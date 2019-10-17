@@ -10,6 +10,7 @@ public class ServerThread extends Thread {
 
 	private Socket socket;
 
+
 	public ServerThread(Socket socket) {
 		this.socket = socket;
 	}
@@ -33,6 +34,7 @@ public class ServerThread extends Thread {
 				{
 					//Server.sendToClients(message);
 					Server.movePlayer(message);
+			
 				}
 				else if (message.equals("ready")){
 					Server.ready();
@@ -47,6 +49,5 @@ public class ServerThread extends Thread {
 			}
 		}
 	}
-
 
 }
