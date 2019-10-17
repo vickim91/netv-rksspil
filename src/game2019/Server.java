@@ -46,8 +46,26 @@ public class Server {
 	
 		}
 	}
+	private static ArrayList<Boolean> getBools()
+	{
+		ArrayList<Boolean> bools = new ArrayList();
+		
+		for(ServerThread t : readThreads)
+		{
+			bools.add(t.isReady());
+		}
+		return bools;
+	}
 	public static synchronized void sendToClients(String message)
 	{
+		
+		ArrayList<Boolean> bools = getBools();
+		
+		while(bools.contains(false))
+		{
+			bools = getBools();
+		}
+		
 		for (ServerWriteThread t : writeThreads)
 		{
 		
