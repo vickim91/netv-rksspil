@@ -17,7 +17,7 @@ public class Client {
 		clientThreadWrite = new ClientThreadWrite(clientSocket);
 
 		clientThread.start();
-		System.out.println("client connected");
+		//system.out.println("client connected");
 	}
 
 	// sender navn og position lige nu er det bare for start position, men kan evt

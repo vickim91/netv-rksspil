@@ -21,7 +21,7 @@ public class ServerThread extends Thread {
 			try {
 				BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				String message = inFromServer.readLine();
-				System.out.println("recieved: " + message);
+				//system.out.println("recieved: " + message);
 				String[] sSplit = message.split(" ");
 				if(sSplit[0].equals("spawn") && sSplit.length ==5)
 				{
@@ -38,7 +38,7 @@ public class ServerThread extends Thread {
 				}
 		
 //				for (ServerThread s : Server.getThreads()) {
-//					System.out.println(s.toString());
+//					//system.out.println(s.toString());
 //					s.pushMessage(message); //lav en hjælpe metode på serveren der er synkroniseret. 
 //				}
 			} catch (IOException e) {
@@ -56,7 +56,7 @@ public class ServerThread extends Thread {
 //			outToClient = new DataOutputStream(socket.getOutputStream());
 //			outToClient.writeBytes(message + "\n");
 //			outToClient.flush();
-//			System.out.println("pushed " + message);
+//			//system.out.println("pushed " + message);
 //
 //		} catch (IOException e1) {
 //			// TODO Auto-generated catch block

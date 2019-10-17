@@ -16,7 +16,7 @@ public class Server {
 	private String[] playerNames;
 	
 	public static void main(String[] args) throws Exception {
-		System.out.println("server running");
+		//system.out.println("server running");
 		initIPs();
 		
 		String clientSentence;
@@ -32,7 +32,7 @@ public class Server {
 		if(!threads.contains(serverWriteThread))
 		{
 			threads.add(serverWriteThread);
-			System.out.println("NUMBER OF THREADS " + threads.size());
+			//system.out.println("NUMBER OF THREADS " + threads.size());
 		}
 		
 		serverThread.start();
@@ -69,7 +69,7 @@ public class Server {
 		sendToClients(message);
 		String[] sSplit = message.split(" ");
 		String scoreString = "score " +  sSplit[1] +" 1 ";
-		System.out.println("scoreString "+scoreString);
+		//system.out.println("scoreString "+scoreString);
 		addPointToPlayer(scoreString);
 	}
 	public HashMap<String, Integer> getPlayerScores()

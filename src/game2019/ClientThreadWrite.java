@@ -16,7 +16,7 @@ public class ClientThreadWrite extends Thread{
 	// sender navn og position lige nu er det bare for start position, men kan evt
 	// udvides som en mere generelt implementation
 	public void sendNameAndPos(String name, int x, int y, String direction) throws Exception {
-		// System.out.println(clientSocket);
+		// //system.out.println(clientSocket);
 		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
 		outToServer.writeBytes("move "+name + " " + x + " " + y + " " + direction + "\n");
 		outToServer.flush();

@@ -35,7 +35,7 @@ public void pushMessage(String message) {
 		outToClient = new DataOutputStream(socket.getOutputStream());
 		outToClient.writeBytes(message + "\n");
 		outToClient.flush();
-		System.out.println("pushed " + message);
+		//system.out.println("pushed " + message);
 
 	} catch (IOException e1) {
 		// TODO Auto-generated catch block
