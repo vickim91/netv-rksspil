@@ -23,11 +23,7 @@ public class ServerThread extends Thread {
 				String message = inFromServer.readLine();
 				//system.out.println("recieved: " + message);
 				String[] sSplit = message.split(" ");
-				if(message.equals("ready" )&& sSplit.length==1)
-				{
-					Server.ready();
-				}
-				else {
+			
 			
 				if(sSplit[0].equals("spawn") && sSplit.length ==5)
 				{
@@ -38,7 +34,10 @@ public class ServerThread extends Thread {
 					//Server.sendToClients(message);
 					Server.movePlayer(message);
 				}
+				else {
+					Server.ready();
 				}
+				
 			
 //			
 //				}
