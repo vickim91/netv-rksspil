@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -27,6 +28,7 @@ public class Main extends Application {
 
 	public static Player me;
 	public static List<Player> players = new ArrayList<Player>();
+	private static Player player; 
 
 	private static Label[][] fields;
 	private static TextArea scoreList;
@@ -35,6 +37,7 @@ public class Main extends Application {
 	private TextField posXTxt = new TextField("indtast x posistion");
 	private TextField posYTxt = new TextField("indtast y posistion");
 	private static String[] board = { // 20x20
+			
 			"wwwwwwwwwwwwwwwwwwww", 
 			"w        ww        w", 
 			"w w  w  www w  w  ww", 
@@ -218,7 +221,7 @@ public class Main extends Application {
 
 				if (board[newY].charAt(newX) == 'w')
 				{
-					System.out.println("mur");
+					//System.out.println("mur");
 					player.addPoints(-1);
 				}
 				else {
@@ -369,12 +372,13 @@ public class Main extends Application {
 		}
 	}
 	
-	public synchronized static void readMessagefromClient (String message) {
+	public static void readMessagefromClient (String message) {
 		
-		javafx.application.Platform.runLater(new Runnable(){
-			@Override
-			public void run() {
-				
+		//javafx.application.Platform.runLater(new Runnable(){
+			
+//			@Override
+//			public void run() {
+//				
 				String[] arr = message.split(" ");
 				
 				//system.out.println("message from client: "+ message);
@@ -391,7 +395,7 @@ public class Main extends Application {
 					}
 				}
 				else {
-				Player player  = new Player(arr[1],Integer.parseInt( arr[2]), Integer.parseInt(arr[3]), arr[4]);
+					player  = new Player(arr[1],Integer.parseInt( arr[2]), Integer.parseInt(arr[3]), arr[4]);
 				
 				if(arr[0].equals("spawn"))
 				{
@@ -421,12 +425,13 @@ public class Main extends Application {
 							player = p;
 						}
 					}
+					Platform.runLater(()->{
 					playerMoved(player, Integer.parseInt(arr[2]),Integer.parseInt( arr[3]), arr[4]);
-				}
+				});
 				}
 			
 
 			}		
-	});
+	//}
 	}
 }

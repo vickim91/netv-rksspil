@@ -8,17 +8,19 @@ import java.net.Socket;
 
 public class ServerWriteThread extends Thread {
 	private Socket socket;
+	private DataOutputStream outToClient;
 
 	public ServerWriteThread(Socket socket)
 	{
 		this.socket = socket;
+	
 	}
 
 
 
 public void pushMessage(String message) {
 
-	DataOutputStream outToClient;
+	
 
 	try {
 		outToClient = new DataOutputStream(socket.getOutputStream());
