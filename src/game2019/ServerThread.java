@@ -38,7 +38,7 @@ public class ServerThread extends Thread {
 					setReady(false);
 			
 				}
-				else if (sSplit[0].equals("ready")){
+				else {
 					
 					setReady(true);
 				}

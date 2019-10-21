@@ -188,17 +188,17 @@ public class Main extends Application {
 	}
 
 	public void planMove(int delta_x, int delta_y, String direction) {
-		//system.out.println("planMove ");
+	
 		me.direction = direction;
 		int x = me.getXpos(), y = me.getYpos();
-		//system.out.println("my xpos: "+x + " my ypos: "+y +" delta x: " +delta_x + " delta y: "+delta_y);
+
 
 		
 				
 				try {
 			
 					Client.sendNameAndPos(me.name, (me.xpos +delta_x), (me.ypos +delta_y), direction);
-					//system.out.println("send new move: "+ (me.xpos+delta_x) + " " + (me.ypos+delta_y));
+					
 					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
@@ -265,17 +265,12 @@ public class Main extends Application {
 	
 	public static void spawnPlayer(Player player, int newX, int newY, String direction) {
 		player.direction = direction;
-		//system.out.println("spawned player");
+
 		int x = player.getXpos(), y = player.getYpos();
 
 		if (board[newY].charAt(newX) == 'w') {
 		
-//		} else {
-//		
-//			Player p = getPlayerAt(newX, newY);
-//	
-//			if (p != null && p.equals( player)) {
-		
+
 			} else if(newX != x || newY != y) {
 			
 				fields[x][y].setGraphic(new ImageView(image_floor));
