@@ -59,13 +59,13 @@ public class Server {
 	public static synchronized void sendToClients(String message)
 	{
 		
-		ArrayList<Boolean> bools = getBools();
-		
-		while(bools.contains(false))
-		{
-			bools = getBools();
-		}
-		
+//		ArrayList<Boolean> bools = getBools();
+//		
+//		while(bools.contains(false))
+//		{
+//			bools = getBools();
+//		}
+//		
 		for (ServerWriteThread t : writeThreads)
 		{
 		
