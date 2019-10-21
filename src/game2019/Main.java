@@ -378,7 +378,7 @@ public class Main extends Application {
 			
 //			@Override
 //			public void run() {
-//				
+				Platform.runLater(()->{
 				String[] arr = message.split(" ");
 				
 				//system.out.println("message from client: "+ message);
@@ -386,6 +386,7 @@ public class Main extends Application {
 //				for(Player p : players) { // lav en compareTo istedet
 //					playerNames.add(p.name);
 //				}
+				
 				if(arr[0].equals("score"))
 				{
 					for(Player p : players)
@@ -425,13 +426,13 @@ public class Main extends Application {
 							player = p;
 						}
 					}
-					Platform.runLater(()->{
+					
 					playerMoved(player, Integer.parseInt(arr[2]),Integer.parseInt( arr[3]), arr[4]);
-				});
+				}
 				}
 			
 
-			}		
+			}	);	
 	//}
 	}
 }
